@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Portofolio/static/css/main.7aafd8c9.css",
-    "main.js": "/Portofolio/static/js/main.6224654e.js",
+    "main.css": "/Portofolio/static/css/main.6b490252.css",
+    "main.js": "/Portofolio/static/js/main.f41e541f.js",
     "static/media/jobmaster-1.png": "/Portofolio/static/media/jobmaster-1.cd5b598db41849e4565c.png",
     "static/media/explora-1.png": "/Portofolio/static/media/explora-1.cdce1824c8fb8985b7f4.png",
     "static/media/explora-5.png": "/Portofolio/static/media/explora-5.4dcb4b5e564bcf1eb4fd.png",
@@ -43,11 +43,11 @@
     "static/media/recruitment-5.png": "/Portofolio/static/media/recruitment-5.581098d814fb74e18dd1.png",
     "static/media/recruitment-4.png": "/Portofolio/static/media/recruitment-4.e095b2eb1e97e7b84cd8.png",
     "index.html": "/Portofolio/index.html",
-    "main.7aafd8c9.css.map": "/Portofolio/static/css/main.7aafd8c9.css.map",
-    "main.6224654e.js.map": "/Portofolio/static/js/main.6224654e.js.map"
+    "main.6b490252.css.map": "/Portofolio/static/css/main.6b490252.css.map",
+    "main.f41e541f.js.map": "/Portofolio/static/js/main.f41e541f.js.map"
   },
   "entrypoints": [
-    "static/css/main.7aafd8c9.css",
-    "static/js/main.6224654e.js"
+    "static/css/main.6b490252.css",
+    "static/js/main.f41e541f.js"
   ]
 }
