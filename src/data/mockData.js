@@ -54,7 +54,7 @@ export const personalInfo = {
   github: "github.com/cutgeubrina",
   bio: "Software Developer at PT Pos Indonesia specializing in front-end & mobile development. I deliver maintainable features, responsive UIs, and measurable performance improvements with strong collaboration and a bias to ship. With experience in React, Flutter, and Laravel, I transform complex requirements into intuitive user experiences. Currently expanding my horizons into backend development as a beginner with Golang and Express, aiming to build more robust and integrated digital solutions.",
   resumeUrl: "/CV DEVELOPER - Cut Geubrina Rizky.pdf",
-  profileImage: "/foto.jpeg",
+  profileImage: "foto.jpeg",
 };
 
 export const skills = {

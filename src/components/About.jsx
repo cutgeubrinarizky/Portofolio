@@ -34,7 +34,7 @@ const About = () => {
                 <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#E8B4C8] to-[#FF6B9D] p-1 group">
                   <div className="w-full h-full rounded-full overflow-hidden border-2 border-[#1A1A1D]">
                     <img
-                      src={process.env.PUBLIC_URL + personalInfo.profileImage}
+                      src={`${process.env.PUBLIC_URL}/${personalInfo.profileImage}`}
                       alt={personalInfo.name}
                       className="w-full h-full rounded-full object-cover group-hover:scale-110 transition-transform duration-500 box-shadow-xl"
                     />
