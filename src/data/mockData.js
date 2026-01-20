@@ -105,12 +105,14 @@ export const projects = [
       "Firebase",
     ],
     features: [
-      "Check-in/out attendance system",
-      "HR service modules",
-      "Location-based tracking",
-      "Continuous maintenance & updates",
-      "Real-time notifications",
+      "Secure Login system",
+      "API Integration (REST)",
+      "Real-time Push Notifications",
+      "Integrated WebView modules",
+      "Location-based check-in/out",
     ],
+    contribution:
+      "Developed both Android & iOS versions using Flutter. Implemented the core authentication (Login) and complex Integrasi API (REST) to sync real-time attendance data. Integrated Firebase for notifications and built WebView components for internal HR dashboards.",
     image:
       "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
     status: "Live - Continuous Maintenance",
@@ -230,12 +232,14 @@ export const projects = [
       "Advanced career evaluation and job management platform designed for PT Pos Indonesia's HR operations. Features a sophisticated role-based system supporting Admin, User, Super Admin, and Admin Champion roles with distinct permissions and workflows. Includes interactive dashboards for performance tracking, comprehensive job profile management, automated evaluation workflows, organizational structure visualization, and detailed analytics. Built with React and Vite for optimal performance, utilizing Material UI for consistent user experience across all user roles.",
     technologies: ["React", "Vite", "Material UI", "REST API", "JavaScript"],
     features: [
-      "Multi-role system (Admin, User, Super Admin, Admin Champion)",
-      "Interactive dashboard",
-      "Job profile management",
-      "Evaluation workflows",
-      "Org structure visualization",
+      "API Integration & State Management",
+      "Multi-role system architecture",
+      "Interactive analytics dashboard",
+      "Automated evaluation workflows",
+      "Job profile repository",
     ],
+    contribution:
+      "Developed the complex frontend architecture using React and Vite. Focused on robust Integrasi API to handle large-scale HR data, building interactive Material UI components, and managing global state for a seamless evaluation experience.",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     status: "Live - Continuous Updates",
@@ -319,12 +323,14 @@ export const projects = [
       "REST API",
     ],
     features: [
-      "Vacancy management system",
-      "Application tracking workflow",
-      "Admin review dashboard",
-      "Regional data integration",
-      "Contract management",
+      "Fullstack API Integration",
+      "Relational database management",
+      "Application tracking system",
+      "Contract document generator",
+      "Regional recruitment logic",
     ],
+    contribution:
+      "Acted as a Fullstack Developer. Designed the MySQL database, developed the backend logic using Native PHP, and implemented deep Integrasi API to connect the vacancy management system with regional office data feeds.",
     image:
       "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
     status: "Live - Continuous Maintenance",
@@ -387,12 +393,14 @@ export const projects = [
       "REST API",
     ],
     features: [
-      "Public job application interface",
-      "Admin management dashboard",
-      "Multi-step application form",
-      "Email notifications",
-      "Document upload & tracking",
+      "API Integration (RESTful)",
+      "Frontend-first architecture",
+      "Responsive multi-step application",
+      "Candidate management dashboard",
+      "Real-time status tracking",
     ],
+    contribution:
+      "Lead the Frontend development using React. Implemented high-performance Integrasi API for large-scale candidate data processing, built a robust multi-step form with complex validation, and developed the admin management system.",
     image:
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80",
     status: "Live - Continuous Updates",
@@ -483,12 +491,14 @@ export const projects = [
       "JavaScript",
     ],
     features: [
-      "Multi-role system (Admin, User, Super Admin, Counselor, Admin Regional)",
-      "Multi-step form wizard",
-      "Document management",
-      "Workflow automation",
-      "PDF report generation",
+      "Secure API Integration",
+      "Complex form-wizard logic",
+      "Role-based access control",
+      "Automated PDF generation",
+      "Regional approval workflows",
     ],
+    contribution:
+      "Developed the entire frontend system using React. Focused on secure Integrasi API for sensitive retirement data, implemented intricate state management for the form wizard, and integrated client-side PDF generation to automate workflows.",
     image:
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
     status: "Live - Continuous Maintenance",
@@ -508,12 +518,14 @@ export const projects = [
       "Comprehensive knowledge management system serving as PT Pos Indonesia's central hub for internal knowledge sharing and collaboration. Features interactive dashboards with analytics and insights, sophisticated role-based access control for User, Admin, and Super Admin roles. Includes advanced knowledge base management, event submission system with gamified leaderboards, comprehensive search functionality, and collaborative tools for knowledge creation and sharing. Built with React, Vite, and Material UI to provide fast, responsive experience while managing extensive knowledge repositories and facilitating organization-wide learning and development initiatives.",
     technologies: ["React", "Vite", "Material UI", "REST API", "JavaScript"],
     features: [
-      "Multi-role system (User, Admin, Super Admin)",
-      "Interactive dashboard",
-      "Event submission & leaderboard",
-      "Knowledge base management",
-      "Advanced search functionality",
+      "Social API Integration",
+      "Gamified knowledge sharing",
+      "Content moderation system",
+      "Interactive event gallery",
+      "Digital library management",
     ],
+    contribution:
+      "Developed frontend modules using React and Vite. Focused on real-time Integrasi API for the feed and leaderboard systems, optimized image rendering, and ensured a responsive UI for a seamless knowledge-sharing experience.",
     image:
       "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=800&q=80",
     screenshots: [
@@ -581,17 +593,14 @@ export const projects = [
       "Database Basics",
     ],
     features: [
-      "RESTful API design & development",
-      "Authentication & authorization systems",
-      "Database design & optimization",
-      "Third-party API integrations",
-      "Real-time data processing",
-      "Microservices architecture",
-      "API documentation (Swagger)",
-      "Docker containerization",
-      "CI/CD pipeline setup",
-      "Performance optimization",
+      "Gin-based RESTful API",
+      "Integrasi API (JWT Security)",
+      "Database schema optimization",
+      "Swagger documentation",
+      "Dockerized deployment",
     ],
+    contribution:
+      "Exploring backend development as a beginner. Built basic RESTful endpoints using Golang and Gin, implemented secure Integrasi API with JWT for testing, and learned how to dockerize applications for consistent environments.",
     image:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
     status: "Available for Projects",
@@ -619,12 +628,14 @@ export const projects = [
       "Third-party Services",
     ],
     features: [
-      "Cross-platform mobile app",
-      "Instrument catalog & search",
-      "Real-time booking system",
-      "Payment gateway integration",
-      "Inventory management",
+      "REST & Firebase API Integration",
+      "Cross-platform mobile UI",
+      "Rental lifecycle management",
+      "Stripe payment integration",
+      "Real-time search & filters",
     ],
+    contribution:
+      "Developed the mobile app using React Native. Focused on complex Integrasi API for the rental instrument catalog and Stripe payments, building a fluid UI for Android and iOS, and using Firebase for real-time data persistence.",
     image:
       "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80",
     status: "Live",
@@ -649,12 +660,14 @@ export const projects = [
       "CSV Export",
     ],
     features: [
-      "NFC tag reading & writing",
-      "GPS location tracking",
-      "Automatic timestamp recording",
-      "CSV data export",
-      "Offline data storage",
+      "NFC & Cloud API Integration",
+      "NFC tag scanning & writing",
+      "GPS tracking integration",
+      "Local-to-Cloud sync",
+      "CSV report generator",
     ],
+    contribution:
+      "Built this utility using Flutter. Implemented complex Integrasi API with Google Apps Script for cloud synchronization, handled core NFC scanning logic, and integrated background GPS services for accurate location logging.",
     image:
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
     status: "Live",
@@ -681,12 +694,14 @@ export const projects = [
       "WebSocket",
     ],
     features: [
-      "Multi-role system (User, Admin, Super Admin)",
-      "Partner discovery & matching",
-      "Field booking system",
-      "Community chat features",
-      "Event organization & management",
+      "Backend API Integration (Planned)",
+      "Partner matching logic",
+      "Field booking engine",
+      "Community chat modules",
+      "Event RSVP system",
     ],
+    contribution:
+      "Designing and developing the web frontend from scratch using React. Currently focusing on modular components for upcoming Integrasi API, developing partner matching algorithms, and ensuring a premium user journey.",
     image:
       "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80",
     status: "In Progress / Not Launched",
@@ -712,12 +727,14 @@ export const projects = [
       "Design System",
     ],
     features: [
-      "Multi-user role system (Health Workers, Pharmacists, Patients)",
-      "Queue management interface",
-      "Real-time status tracking",
-      "User research & analysis",
-      "Comprehensive design system",
+      "User journey mapping",
+      "API Flow Design (Conceptual)",
+      "Interactive prototypes",
+      "Accessible UI design",
+      "Queue flow analysis",
     ],
+    contribution:
+      "Conducted extensive user research at hospital pharmacies. Designed the high-fidelity prototypes and mapped out the Integrasi API flow between patients and pharmacists to ensure a smooth, error-free drug pickup experience.",
     image:
       "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
     status: "Completed",
@@ -743,12 +760,14 @@ export const projects = [
       "Data Visualization",
     ],
     features: [
-      "String similarity calculation algorithms",
-      "Automated data error detection",
-      "Label correction and reclassification",
-      "Data visualization and analysis",
-      "Large-scale dataset processing",
+      "Data API Pipeline logic",
+      "Levenshtein distance matching",
+      "Python data pipelines",
+      "Categorical error visualization",
+      "Automated label correction",
     ],
+    contribution:
+      "Developed the data cleaning and processing scripts using Python. Implemented Integrasi API concepts for data ingestion from SP2020 repositories, applied string similarity algorithms to resolve errors, and created statistical visualizations.",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     status: "Completed",

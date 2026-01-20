@@ -10,6 +10,8 @@ import {
   Code,
   Zap,
   Github,
+  Award,
+  Layers,
 } from "lucide-react";
 
 const Projects = () => {
@@ -409,11 +411,26 @@ const Projects = () => {
                   </p>
                 </div>
 
+                {/* Contribution / What I Did */}
+                {selectedProject.contribution && (
+                  <div>
+                    <h3 className="text-xl font-bold text-[#FFD700] mb-3 flex items-center gap-2">
+                      <Award className="w-5 h-5" />
+                      What I Did (Personal Journey)
+                    </h3>
+                    <div className="p-5 rounded-xl bg-[#FFD700]/5 border border-[#FFD700]/10 border-l-4 border-l-[#FFD700]">
+                      <p className="text-white/80 leading-relaxed italic">
+                        "{selectedProject.contribution}"
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Technologies */}
                 <div>
                   <h3 className="text-xl font-bold text-[#FF0080] mb-3 flex items-center gap-2">
-                    <Zap className="w-5 h-5" />
-                    Technologies Used
+                    <Layers className="w-5 h-5" />
+                    Tech Stack & Architecture
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedProject.technologies.map((tech, i) => (
