@@ -1,10 +1,13 @@
-import React from 'react';
-import { personalInfo, education, certifications } from '../data/mockData';
-import { MapPin, Mail, Linkedin, GraduationCap, Award } from 'lucide-react';
+import React from "react";
+import { personalInfo, education, certifications } from "../data/mockData";
+import { MapPin, Mail, Linkedin, GraduationCap, Award } from "lucide-react";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-[#0F0F10] via-[#1A1A1D] to-[#0F0F10] relative">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-b from-[#0F0F10] via-[#1A1A1D] to-[#0F0F10] relative"
+    >
       {/* Subtle background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 right-20 w-40 h-40 border border-[#E8B4C8]/20 rounded-full" />
@@ -28,18 +31,22 @@ const About = () => {
             <div className="space-y-6">
               {/* Profile Card */}
               <div className="bg-[#1A1A1D] rounded-2xl p-8 border border-[#2D2D30] hover:border-[#E8B4C8]/50 transition-all duration-300">
-                <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#E8B4C8] to-[#FF6B9D] p-1">
-                  <img 
-                    src="/foto.jpeg" 
-                    alt={personalInfo.name}
-                    className="w-full h-full rounded-full object-cover"
-                  />
+                <div className="w-40 h-40 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#E8B4C8] to-[#FF6B9D] p-1 group">
+                  <div className="w-full h-full rounded-full overflow-hidden border-2 border-[#1A1A1D]">
+                    <img
+                      src={process.env.PUBLIC_URL + personalInfo.profileImage}
+                      alt={personalInfo.name}
+                      className="w-full h-full rounded-full object-cover group-hover:scale-110 transition-transform duration-500 box-shadow-xl"
+                    />
+                  </div>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-white text-center mb-2">
                   {personalInfo.name}
                 </h3>
-                <p className="text-[#E8B4C8] text-center mb-6">{personalInfo.title}</p>
+                <p className="text-[#E8B4C8] text-center mb-6">
+                  {personalInfo.title}
+                </p>
 
                 {/* Contact Info */}
                 <div className="space-y-3">
@@ -47,14 +54,14 @@ const About = () => {
                     <MapPin className="w-5 h-5 text-[#E8B4C8]" />
                     <span>{personalInfo.location}</span>
                   </div>
-                  <a 
+                  <a
                     href={`mailto:${personalInfo.email}`}
                     className="flex items-center gap-3 text-white/70 hover:text-[#E8B4C8] transition-colors"
                   >
                     <Mail className="w-5 h-5 text-[#E8B4C8]" />
                     <span>{personalInfo.email}</span>
                   </a>
-                  <a 
+                  <a
                     href={`https://${personalInfo.linkedin}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -73,10 +80,21 @@ const About = () => {
                     <GraduationCap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-1">{education.degree}</h4>
-                    <p className="text-[#E8B4C8] text-sm mb-2">{education.institution}</p>
-                    <p className="text-white/60 text-sm">{education.duration}</p>
-                    <p className="text-white/60 text-sm">GPA: <span className="text-[#E8B4C8] font-semibold">{education.gpa}</span></p>
+                    <h4 className="text-lg font-semibold text-white mb-1">
+                      {education.degree}
+                    </h4>
+                    <p className="text-[#E8B4C8] text-sm mb-2">
+                      {education.institution}
+                    </p>
+                    <p className="text-white/60 text-sm">
+                      {education.duration}
+                    </p>
+                    <p className="text-white/60 text-sm">
+                      GPA:{" "}
+                      <span className="text-[#E8B4C8] font-semibold">
+                        {education.gpa}
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -108,7 +126,9 @@ const About = () => {
                   <div className="text-4xl font-bold bg-gradient-to-r from-[#FF6B9D] to-[#00D9FF] bg-clip-text text-transparent mb-2">
                     8+
                   </div>
-                  <div className="text-white/60 text-sm">Projects Delivered</div>
+                  <div className="text-white/60 text-sm">
+                    Projects Delivered
+                  </div>
                 </div>
 
                 <div className="bg-[#1A1A1D] rounded-xl p-6 border border-[#2D2D30] hover:border-[#00D9FF]/50 transition-all duration-300 text-center">
@@ -138,19 +158,28 @@ const About = () => {
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               {certifications.slice(0, 6).map((cert, index) => (
-                <div key={cert.id} className="bg-[#1A1A1D] rounded-xl p-5 border border-[#2D2D30] hover:border-[#00FFFF]/50 transition-all duration-300">
+                <div
+                  key={cert.id}
+                  className="bg-[#1A1A1D] rounded-xl p-5 border border-[#2D2D30] hover:border-[#00FFFF]/50 transition-all duration-300"
+                >
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 rounded-full bg-[#00FFFF] mt-2 flex-shrink-0" />
                     <div className="flex-1">
-                      <h4 className="text-base font-bold text-white mb-1">{cert.title}</h4>
-                      <p className="text-[#00FFFF] text-sm font-semibold mb-2">{cert.organization}</p>
+                      <h4 className="text-base font-bold text-white mb-1">
+                        {cert.title}
+                      </h4>
+                      <p className="text-[#00FFFF] text-sm font-semibold mb-2">
+                        {cert.organization}
+                      </p>
                       <div className="flex items-center gap-2 text-xs text-white/60 mb-2">
                         <span className="px-2 py-1 rounded-full bg-[#FF0080]/20 text-[#FF0080] border border-[#FF0080]/30 text-xs">
                           {cert.type}
                         </span>
                         <span>{cert.duration}</span>
                       </div>
-                      <p className="text-white/70 text-xs leading-relaxed">{cert.description}</p>
+                      <p className="text-white/70 text-xs leading-relaxed">
+                        {cert.description}
+                      </p>
                     </div>
                   </div>
                 </div>
