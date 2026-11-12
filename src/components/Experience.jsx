@@ -22,8 +22,9 @@ const Experience = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="max-w-3xl w-full">
-            <div className="relative group">
+          <div className="max-w-3xl w-full space-y-8">
+            {experience.map((job) => (
+            <div key={job.id} className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-[#00FFFF] to-[#FF0080] rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
               <div className="relative bg-black/40 rounded-2xl p-8 border border-[#00FFFF]/20 hover:border-[#00FFFF] transition-all duration-300 backdrop-blur-xl">
                 {/* Company & Position */}
@@ -32,27 +33,27 @@ const Experience = () => {
                     <Briefcase className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{experience[0].position}</h3>
-                    <p className="text-[#00FFFF] font-bold text-lg mb-3">{experience[0].company}</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">{job.position}</h3>
+                    <p className="text-[#00FFFF] font-bold text-lg mb-3">{job.company}</p>
                     <div className="flex flex-wrap gap-4 text-sm text-white/70">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-[#00FFFF]" />
-                        {experience[0].duration}
+                        {job.duration}
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4 text-[#FF0080]" />
-                        {experience[0].location}
+                        {job.location}
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-white/80 mb-6 text-lg leading-relaxed">{experience[0].description}</p>
+                <p className="text-white/80 mb-6 text-lg leading-relaxed">{job.description}</p>
 
                 {/* Highlights */}
                 <div className="grid md:grid-cols-2 gap-3">
-                  {experience[0].highlights.map((highlight, i) => (
+                  {job.highlights.map((highlight, i) => (
                     <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-black/20 border border-[#00FFFF]/10">
                       <div className="w-2 h-2 rounded-full bg-[#00FFFF] mt-2 flex-shrink-0" />
                       <span className="text-white/70 text-sm">{highlight}</span>
@@ -61,6 +62,7 @@ const Experience = () => {
                 </div>
               </div>
             </div>
+            ))}
           </div>
         </div>
       </div>

@@ -14,6 +14,17 @@ import {
   Layers,
 } from "lucide-react";
 
+const typeLabels = {
+  physiomobile: "Physiomobile",
+  internal: "Pos Indonesia",
+  freelance: "Freelance",
+  "ui ux": "UI/UX",
+  data: "Data",
+};
+
+// Card/header image: explicit image, otherwise the first real screenshot
+const getCover = (project) => project.image || project.screenshots?.[0]?.url;
+
 const Projects = () => {
   const [filter, setFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -108,9 +119,9 @@ const Projects = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] mx-auto rounded-full mb-6" />
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Enterprise systems, mobile apps, UI/UX designs, data processing
-            solutions, and freelance projects built with React, Flutter, Python,
-            and modern technologies.
+            Production Flutter apps at Physiomobile, enterprise systems at PT
+            Pos Indonesia, and freelance projects built with Flutter, React,
+            Next.js, Astro and more.
           </p>
         </div>
 
@@ -118,31 +129,11 @@ const Projects = () => {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {[
             { id: "all", label: "All Projects", count: projects.length },
-            {
-              id: "internal",
-              label: "Internal",
-              count: projects.filter((p) => p.type === "internal").length,
-            },
-            {
-              id: "freelance",
-              label: "Freelance",
-              count: projects.filter((p) => p.type === "freelance").length,
-            },
-            {
-              id: "startup",
-              label: "Startup",
-              count: projects.filter((p) => p.type === "startup").length,
-            },
-            {
-              id: "ui ux",
-              label: "UI/UX",
-              count: projects.filter((p) => p.type === "ui ux").length,
-            },
-            {
-              id: "data",
-              label: "Data",
-              count: projects.filter((p) => p.type === "data").length,
-            },
+            ...Object.entries(typeLabels).map(([id, label]) => ({
+              id,
+              label,
+              count: projects.filter((p) => p.type === id).length,
+            })),
           ].map((f) => (
             <button
               key={f.id}
@@ -171,16 +162,20 @@ const Projects = () => {
               {/* Card */}
               <div className="bg-[#1A1A1D] rounded-2xl overflow-hidden border border-[#2D2D30] hover:border-[#E8B4C8] transition-all duration-300">
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <div
-                    className="absolute inset-0 opacity-40"
-                    style={{ backgroundColor: project.color }}
-                  />
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                <div
+                  className={
+                    getCover(project)
+                      ? "relative h-48 overflow-hidden bg-[#0F0F10]"
+                      : "relative h-14"
+                  }
+                >
+                  {getCover(project) && (
+                    <img
+                      src={getCover(project)}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                    />
+                  )}
 
                   {/* Status Badge */}
                   <div className="absolute top-4 right-4">
@@ -214,7 +209,9 @@ const Projects = () => {
                   <div className="flex items-center justify-between mb-3">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
-                        project.type === "internal"
+                        project.type === "physiomobile"
+                          ? "bg-cyan-500/20 text-cyan-300 border border-cyan-500/30"
+                          : project.type === "internal"
                           ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
                           : project.type === "freelance"
                             ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
@@ -227,11 +224,13 @@ const Projects = () => {
                                   : "bg-gray-500/20 text-gray-400 border border-gray-500/30"
                       }`}
                     >
-                      {project.type || "Project"}
+                      {typeLabels[project.type] || project.type || "Project"}
                     </span>
-                    <span className="text-xs text-white/50 font-medium">
-                      {project.year}
-                    </span>
+                    {project.year && (
+                      <span className="text-xs text-white/50 font-medium">
+                        {project.year}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-xl font-bold text-white group-hover:text-[#00FFFF] transition-colors mb-2">
@@ -318,20 +317,30 @@ const Projects = () => {
               </button>
 
               {/* Project image */}
-              <div className="relative h-64 overflow-hidden rounded-t-2xl">
-                <div
-                  className="absolute inset-0 opacity-60"
-                  style={{ backgroundColor: selectedProject.color }}
-                />
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div
+                className={`relative overflow-hidden rounded-t-2xl ${
+                  getCover(selectedProject) ? "h-64" : "pt-16 pb-2"
+                }`}
+              >
+                {getCover(selectedProject) && (
+                  <>
+                    <img
+                      src={getCover(selectedProject)}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  </>
+                )}
 
-                {/* Project title overlay */}
-                <div className="absolute bottom-6 left-6">
+                {/* Project title */}
+                <div
+                  className={
+                    getCover(selectedProject)
+                      ? "absolute bottom-6 left-6 right-6"
+                      : "px-8"
+                  }
+                >
                   <h2 className="text-3xl font-bold text-white mb-2">
                     {selectedProject.title}
                   </h2>
@@ -344,10 +353,12 @@ const Projects = () => {
                       )}
                       {selectedProject.platform}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {selectedProject.year}
-                    </span>
+                    {selectedProject.year && (
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {selectedProject.year}
+                      </span>
+                    )}
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         selectedProject.status === "Live"
@@ -367,9 +378,11 @@ const Projects = () => {
                 <div className="grid md:grid-cols-3 gap-4 mb-6">
                   <div className="text-center p-4 rounded-lg bg-black/20 border border-[#00FFFF]/20">
                     <div className="text-[#00FFFF] font-bold text-lg">
-                      {selectedProject.type
-                        ? selectedProject.type.toUpperCase()
-                        : "PROJECT"}
+                      {(
+                        typeLabels[selectedProject.type] ||
+                        selectedProject.type ||
+                        "Project"
+                      ).toUpperCase()}
                     </div>
                     <div className="text-white/60 text-sm">Project Type</div>
                   </div>
@@ -409,6 +422,22 @@ const Projects = () => {
                   <p className="text-white/70 leading-relaxed">
                     {selectedProject.description}
                   </p>
+                  {selectedProject.links?.length > 0 && (
+                    <div className="flex flex-wrap gap-3 mt-4">
+                      {selectedProject.links.map((l) => (
+                        <a
+                          key={l.url}
+                          href={l.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-[#00FFFF]/30 text-sm font-medium text-[#00FFFF] hover:text-[#FF0080] hover:border-[#FF0080]/50 transition-colors"
+                        >
+                          {l.label}
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Contribution / What I Did */}
@@ -515,13 +544,6 @@ const Projects = () => {
                               <img
                                 src={screenshot.url}
                                 alt={screenshot.title}
-                                style={{
-                                  filter: screenshot.blurAreas
-                                    ? selectedProject.category === "mobile"
-                                      ? "blur(2px) brightness(0.95) saturate(1)"
-                                      : "blur(1.5px) brightness(1) saturate(1)"
-                                    : "none",
-                                }}
                                 className="w-full h-full object-cover object-top transition-transform duration-300 group-hover/screenshot:scale-105"
                               />
                               {screenshot.blurAreas && (
@@ -648,15 +670,6 @@ const Projects = () => {
                   screenshotViewer.screenshots[screenshotViewer.currentIndex]
                     ?.title
                 }
-                style={{
-                  filter: screenshotViewer.screenshots[
-                    screenshotViewer.currentIndex
-                  ]?.blurAreas
-                    ? screenshotViewer.category === "mobile"
-                      ? "blur(2.5px) brightness(0.95) saturate(1)"
-                      : "blur(2px) brightness(1) saturate(1)"
-                    : "none",
-                }}
                 className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
               />
 

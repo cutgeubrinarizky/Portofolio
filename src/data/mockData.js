@@ -40,58 +40,231 @@ import jobmaster5 from "../components/screenshots/jobmaster-5.png";
 import jobmaster6 from "../components/screenshots/jobmaster-6.png";
 import jobmaster7 from "../components/screenshots/jobmaster-7.png";
 import jobmaster8 from "../components/screenshots/jobmaster-8.png";
+import physioCustomer1 from "../components/screenshots/physio-customer-1.jpg";
+import physioCustomer2 from "../components/screenshots/physio-customer-2.jpg";
+import physioCustomer3 from "../components/screenshots/physio-customer-3.jpg";
+import physioCustomer4 from "../components/screenshots/physio-customer-4.jpg";
+import physioTherapist1 from "../components/screenshots/physio-therapist-1.jpg";
+import physioTherapist2 from "../components/screenshots/physio-therapist-2.jpg";
+import physioTherapist3 from "../components/screenshots/physio-therapist-3.jpg";
+import physioTherapist4 from "../components/screenshots/physio-therapist-4.jpg";
+import coverPhysioCustomer from "../components/screenshots/cover-physiomobile-customer.jpg";
+import coverPhysioTherapist from "../components/screenshots/cover-physiomobile-therapist.jpg";
+import coverRecht from "../components/screenshots/cover-recht.jpg";
+import coverEmsa from "../components/screenshots/cover-emsa.jpg";
+import coverAnsel from "../components/screenshots/cover-ansel.jpg";
+import coverLivie from "../components/screenshots/cover-livie.jpg";
+import coverJobmaster from "../components/screenshots/cover-jobmaster.jpg";
+import coverSimtkk from "../components/screenshots/cover-simtkk.jpg";
+import coverRecruitment from "../components/screenshots/cover-recruitment.jpg";
+import coverExplora from "../components/screenshots/cover-explora.jpg";
 
 // Mock data for portfolio
 export const personalInfo = {
   name: "Cut Geubrina Rizky",
-  title: "Frontend & Mobile Developer",
+  title: "Mobile Developer (Flutter) | Front-end Developer (React)",
   tagline:
-    "Building seamless digital experiences with React, Flutter & modern web technologies",
+    "Building production Flutter apps and React/Next.js products across health-tech, logistics and enterprise HR",
   location: "Bandung, Indonesia",
   email: "cutgeubrinarizky7@gmail.com",
-  phone: "+62 81269227680",
+  phone: "+62 812-6922-7680",
   linkedin: "linkedin.com/in/cutgeubrina",
-  github: "github.com/cutgeubrina",
-  bio: "Software Developer at PT Pos Indonesia specializing in front-end & mobile development. I deliver maintainable features, responsive UIs, and measurable performance improvements with strong collaboration and a bias to ship. With experience in React, Flutter, and Laravel, I transform complex requirements into intuitive user experiences. Currently expanding my horizons into backend development as a beginner with Golang and Express, aiming to build more robust and integrated digital solutions.",
+  github: "github.com/cutgeubrinarizky",
+  portfolio: "portofolio-gebi.vercel.app",
+  bio: "Mobile and front-end developer with 3+ years of experience building Flutter (Android/iOS) and React/Next.js applications across health-tech, logistics and enterprise HR. Currently shipping Flutter apps on Google Play and the App Store for a Malaysian physiotherapy platform, after delivering 7 internal products at PT Pos Indonesia, including the first-mile module of its core courier system and an employee super app used company-wide. Experienced in REST API integration, reusable component libraries, multi-step forms, role-based workflows and app performance, and comfortable working with Go (Golang), Laravel and CodeIgniter on the backend side.",
   resumeUrl: "/CV DEVELOPER - Cut Geubrina Rizky.pdf",
   profileImage: "foto.jpeg",
 };
 
+export const stats = [
+  { value: "3+", label: "Years Experience" },
+  { value: "15+", label: "Projects Delivered" },
+  { value: "30+", label: "UI Components" },
+  { value: "3.77", label: "GPA Score" },
+];
+
 export const skills = {
   languages: [
+    { name: "Dart (Flutter)", level: 90 },
     { name: "JavaScript", level: 90 },
-    { name: "Dart", level: 85 },
-    { name: "Python", level: 75 },
+    { name: "TypeScript", level: 80 },
     { name: "PHP", level: 80 },
-    { name: "Golang (Beginner/Learning)", level: 55 },
+    { name: "Go (Golang)", level: 70 },
+    { name: "SQL", level: 75 },
   ],
   frameworks: [
-    { name: "React", icon: "⚛️" },
     { name: "Flutter", icon: "📱" },
+    { name: "React", icon: "⚛️" },
     { name: "Next.js", icon: "▲" },
-    { name: "Laravel", icon: "🔺" },
+    { name: "Astro", icon: "🚀" },
     { name: "React Native", icon: "⚛️" },
+    { name: "Vite", icon: "⚡" },
     { name: "Tailwind CSS", icon: "🎨" },
     { name: "Material UI", icon: "💎" },
-    { name: "Ant Design", icon: "🐜" },
+    { name: "Bootstrap", icon: "🅱️" },
+    { name: "Laravel", icon: "🔺" },
     { name: "CodeIgniter", icon: "🔥" },
-    { name: "Express.js (Beginner/Learning)", icon: "🚂" },
+    { name: "Express.js", icon: "🚂" },
+    { name: "Provider / Bloc / GetX", icon: "🧩" },
+    { name: "Firebase (FCM)", icon: "🔔" },
   ],
   tools: [
-    { name: "Git", icon: "🔀" },
+    { name: "Git (GitLab/GitHub)", icon: "🔀" },
+    { name: "CI/CD", icon: "♻️" },
     { name: "Docker", icon: "🐳" },
     { name: "Figma", icon: "🎨" },
     { name: "Android Studio", icon: "🤖" },
-    { name: "XCode", icon: "🍎" },
-    { name: "VS Code", icon: "💻" },
+    { name: "Xcode", icon: "🍎" },
+    { name: "Apidog", icon: "🧪" },
+    { name: "DBeaver", icon: "🗄️" },
+    { name: "Lighthouse / Web Vitals", icon: "📈" },
+    { name: "Play Store & App Store", icon: "🛒" },
   ],
 };
 
 export const projects = [
-  // Internal Projects
+  // Physiomobile (Malaysia)
+  {
+    id: 13,
+    title: "Physiomobile: Physio & Rehab",
+    category: "mobile",
+    type: "physiomobile",
+    platform: "iOS & Android",
+    description:
+      "Production customer app (1K+ downloads) for a Malaysian physiotherapy, rehab and home-care platform, released on Google Play and the App Store. Covers session booking, treatment history and progress, loyalty points, in-app announcements and real-time notifications.",
+    technologies: ["Flutter", "Dart", "REST API", "Firebase Cloud Messaging", "Local Storage"],
+    features: [
+      "Session booking",
+      "Treatment history & progress",
+      "Loyalty points",
+      "In-app announcements",
+      "Real-time notifications",
+    ],
+    contribution:
+      "Develop and maintain the app in Flutter for Android and iOS. Ship regular releases with new features, stability fixes and performance improvements, and integrate REST APIs with the backend team for bookings, session tracking and notifications.",
+    image: coverPhysioCustomer,
+    status: "Live",
+    year: "2026",
+    color: "#00D9FF",
+    client: "Physiomobile (Malaysia)",
+    links: [
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pmmy.customer" },
+      { label: "App Store", url: "https://apps.apple.com/my/app/physiomobile-physio-rehab/id6749616813" },
+    ],
+    screenshots: [
+      {
+        url: physioCustomer1,
+        title: "Home & PMCredit",
+        description: "Home screen with PMCredit wallet card, packages and upcoming appointments",
+        blurAreas: true,
+      },
+      {
+        url: physioCustomer2,
+        title: "Appointments",
+        description: "Upcoming and past appointments with time slips and visit summary",
+        blurAreas: true,
+      },
+      {
+        url: physioCustomer3,
+        title: "Inbox",
+        description: "Chat with customer service and in-app notifications",
+        blurAreas: true,
+      },
+      {
+        url: physioCustomer4,
+        title: "Profile",
+        description: "Profile with loyalty points, referral ID, dependents and medical records",
+        blurAreas: true,
+      },
+    ],
+    screenshotNote:
+      "🔒 Production App: Screenshots are taken from the public store listing and blurred to protect patient and booking data. Source code is private and owned by Physiomobile.",
+  },
+  {
+    id: 14,
+    title: "Physiomobile for Therapist",
+    category: "mobile",
+    type: "physiomobile",
+    platform: "iOS & Android",
+    description:
+      "Production therapist app for the Physiomobile platform, released on Google Play and the App Store. Handles booking management and confirmation, patient records, session notes, assessment submission, and a dashboard for sessions and earnings.",
+    technologies: ["Flutter", "Dart", "REST API", "Firebase Cloud Messaging", "State Management"],
+    features: [
+      "Booking management & confirmation",
+      "Patient records",
+      "Session notes",
+      "Assessment submission",
+      "Sessions & earnings dashboard",
+    ],
+    contribution:
+      "Develop and maintain the therapist app in Flutter. Delivered faster job loading and better performance during peak hours, integrated REST APIs for bookings, assessments and notifications, and take part in code reviews.",
+    image: coverPhysioTherapist,
+    status: "Live",
+    year: "2026",
+    color: "#FF6B9D",
+    client: "Physiomobile (Malaysia)",
+    links: [
+      { label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pmmy.therapist" },
+      { label: "App Store", url: "https://apps.apple.com/my/app/physiomobile-for-therapist/id6749616869" },
+    ],
+    screenshots: [
+      {
+        url: physioTherapist1,
+        title: "Therapist Dashboard",
+        description: "Monthly earnings, acceptance rate and pending booking requests",
+        blurAreas: true,
+      },
+      {
+        url: physioTherapist2,
+        title: "Inbox",
+        description: "Chat with customer service and booking notifications",
+        blurAreas: true,
+      },
+      {
+        url: physioTherapist3,
+        title: "Booking Detail",
+        description: "Booking info, location, patient info, exercise instructions and vital signs",
+        blurAreas: true,
+      },
+      {
+        url: physioTherapist4,
+        title: "Availability Management",
+        description: "Calendar-based timeslot and availability management",
+        blurAreas: true,
+      },
+    ],
+    screenshotNote:
+      "🔒 Production App: Screenshots are taken from the public store listing and blurred to protect patient and booking data. Source code is private and owned by Physiomobile.",
+  },
+
+  // PT Pos Indonesia
+  {
+    id: 15,
+    title: "iPOS5 - Core Courier System",
+    category: "web",
+    type: "internal",
+    platform: "Web",
+    description:
+      "Pos Indonesia's core courier platform covering first-mile, mid-mile and last-mile operations. Focused on the first-mile modules for shipment pickup and acceptance from senders.",
+    technologies: ["Next.js", "React", "TypeScript", "REST API"],
+    features: [
+      "First-mile shipment pickup",
+      "Shipment acceptance from senders",
+      "Reusable form components",
+      "API Integration (REST)",
+    ],
+    contribution:
+      "Build the first-mile modules of iPOS5 in Next.js, covering shipment pickup and acceptance flows, and integrate them with the courier backend APIs.",
+    status: "Live - Continuous Updates",
+    year: "2025",
+    color: "#FF6B9D",
+    client: "PT Pos Indonesia",
+    screenshotNote:
+      "🔒 Enterprise Internal Project: Screenshots are not shown to protect operational and customer data. Source code is hosted on internal company GitLab and is not public for security and confidentiality reasons.",
+  },
   {
     id: 1,
-    title: "Livie - Super App for Employees",
+    title: "Livie - Employee Super App",
     category: "mobile",
     type: "internal",
     platform: "iOS & Android",
@@ -113,8 +286,7 @@ export const projects = [
     ],
     contribution:
       "Developed both Android & iOS versions using Flutter. Implemented the core authentication (Login) and complex Integrasi API (REST) to sync real-time attendance data. Integrated Firebase for notifications and built WebView components for internal HR dashboards.",
-    image:
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
+    image: coverLivie,
     status: "Live - Continuous Maintenance",
     year: "2024",
     color: "#FF6B9D",
@@ -224,7 +396,7 @@ export const projects = [
   },
   {
     id: 3,
-    title: "JobMaster - Career Evaluation System",
+    title: "JobMaster - Career & Job Evaluation",
     category: "web",
     type: "internal",
     platform: "Web",
@@ -240,8 +412,7 @@ export const projects = [
     ],
     contribution:
       "Developed the complex frontend architecture using React and Vite. Focused on robust Integrasi API to handle large-scale HR data, building interactive Material UI components, and managing global state for a seamless evaluation experience.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    image: coverJobmaster,
     status: "Live - Continuous Updates",
     year: "2025",
     color: "#D89BB5",
@@ -309,7 +480,7 @@ export const projects = [
   },
   {
     id: 5,
-    title: "SIMTKK - Workforce Management",
+    title: "SIMTKK - Contract Workforce Management",
     category: "web",
     type: "internal",
     platform: "Web",
@@ -331,8 +502,7 @@ export const projects = [
     ],
     contribution:
       "Acted as a Fullstack Developer. Designed the MySQL database, developed the backend logic using Native PHP, and implemented deep Integrasi API to connect the vacancy management system with regional office data feeds.",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    image: coverSimtkk,
     status: "Live - Continuous Maintenance",
     year: "2024",
     color: "#FF6B9D",
@@ -384,12 +554,12 @@ export const projects = [
     type: "internal",
     platform: "Web",
     description:
-      "Sophisticated dual-interface recruitment platform serving PT Pos Indonesia's nationwide hiring operations. Public-facing interface provides seamless job search and application experience with intuitive multi-step forms, document upload capabilities, and real-time application tracking. Administrative interface offers comprehensive candidate management, application review workflows, interview scheduling, and detailed reporting. Built with React and Material UI to ensure consistent user experience across both interfaces, supporting high-volume recruitment campaigns and reducing application drop-off rates through optimized user journeys.",
+      "Public hiring portal for PT Pos Indonesia's nationwide recruitment, covering the landing page, job listings, application form and notifications. Delivered in ~2 weeks to support nationwide hiring campaigns.",
     technologies: [
-      "React",
-      "Vite",
-      "Material UI",
-      "Form Validation",
+      "CodeIgniter",
+      "PHP",
+      "JavaScript",
+      "Bootstrap",
       "REST API",
     ],
     features: [
@@ -400,13 +570,13 @@ export const projects = [
       "Real-time status tracking",
     ],
     contribution:
-      "Lead the Frontend development using React. Implemented high-performance Integrasi API for large-scale candidate data processing, built a robust multi-step form with complex validation, and developed the admin management system.",
-    image:
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80",
+      "Delivered the public hiring portal in ~2 weeks using CodeIgniter: landing page, job listings, a multi-step application form with validation, and notifications, integrated with the recruitment backend APIs.",
+    image: coverRecruitment,
     status: "Live - Continuous Updates",
     year: "2024",
     color: "#00D9FF",
     client: "PT Pos Indonesia",
+    links: [{ label: "recruitment.posindonesia.co.id", url: "https://recruitment.posindonesia.co.id" }],
     screenshots: [
       {
         url: recruitment1,
@@ -477,7 +647,7 @@ export const projects = [
   },
   {
     id: 7,
-    title: "SiPendi - Early Retirement System",
+    title: "SiPendi - Early Retirement Management",
     category: "web",
     type: "internal",
     platform: "Web",
@@ -499,8 +669,6 @@ export const projects = [
     ],
     contribution:
       "Developed the entire frontend system using React. Focused on secure Integrasi API for sensitive retirement data, implemented intricate state management for the form wizard, and integrated client-side PDF generation to automate workflows.",
-    image:
-      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
     status: "Live - Continuous Maintenance",
     year: "2024",
     color: "#D89BB5",
@@ -510,7 +678,7 @@ export const projects = [
   },
   {
     id: 8,
-    title: "Explora - Knowledge Management",
+    title: "Explora - Knowledge Management System",
     category: "web",
     type: "internal",
     platform: "Web",
@@ -526,8 +694,6 @@ export const projects = [
     ],
     contribution:
       "Developed frontend modules using React and Vite. Focused on real-time Integrasi API for the feed and leaderboard systems, optimized image rendering, and ensured a responsive UI for a seamless knowledge-sharing experience.",
-    image:
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=800&q=80",
     screenshots: [
       {
         url: explora1,
@@ -564,16 +730,21 @@ export const projects = [
     ],
     screenshotNote:
       "🔒 Enterprise Internal Project: Selected screenshots are limited and blurred to protect organizational knowledge and employee data. Source code is hosted on internal company GitLab and is not public for security and confidentiality reasons.",
+    image: coverExplora,
     status: "Live - Continuous Updates",
     year: "2024",
     color: "#E8B4C8",
     client: "PT Pos Indonesia",
+    links: [{ label: "explora.posindonesia.co.id", url: "https://explora.posindonesia.co.id" }],
   },
+
+
+  // Freelance / Side Projects
   {
     id: 11,
     title: "Backend API Services (Golang)",
     category: "backend",
-    type: "internal",
+    type: "freelance",
     platform: "Server",
     description:
       "Backend API development services using Golang and Express. Currently in the learning and exploration phase for backend infrastructure. Focus is on understanding RESTful API design, server-side logic, and database management to support web and mobile applications. Specializing in building clean and maintainable APIs while gaining proficiency in modern backend frameworks and architecture patterns. Aiming to bridge the gap between frontend and backend to deliver comprehensive technological solutions.",
@@ -601,17 +772,74 @@ export const projects = [
     ],
     contribution:
       "Exploring backend development as a beginner. Built basic RESTful endpoints using Golang and Gin, implemented secure Integrasi API with JWT for testing, and learned how to dockerize applications for consistent environments.",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
     status: "Available for Projects",
-    year: "2024 - Present",
     color: "#00D9FF",
     client: "Multiple Clients",
     screenshotNote:
       "🔒 Enterprise Internal Project: Architecture and implementation details are kept confidential. Source code is hosted on secure repositories and is not public to maintain infrastructure security.",
+  },  {
+    id: 16,
+    title: "Recht Indonesia - Company Website",
+    category: "web",
+    type: "freelance",
+    platform: "Web",
+    description:
+      "Website for a legal and business consulting firm, covering service pages (company setup, licensing, trademarks, legal compliance), insight articles, a partner program and WhatsApp consultation.",
+    technologies: ["Astro", "Tailwind CSS", "JavaScript"],
+    features: ["Service pages", "Insight articles", "Partner program", "WhatsApp consultation"],
+    image: coverRecht,
+    status: "Live",
+    color: "#8A2BE2",
+    client: "Recht Indonesia",
+    links: [{ label: "rechtindonesia.com", url: "https://rechtindonesia.com" }],
   },
-
-  // Freelance Projects
+  {
+    id: 17,
+    title: "EMSA Clinic Malaysia - E-commerce",
+    category: "web",
+    type: "freelance",
+    platform: "Web",
+    description:
+      "Online store for an aesthetic clinic's skincare line in Malaysia, with product catalog, product bundles, wishlist, cart, user accounts and checkout.",
+    technologies: ["Next.js", "Headless WordPress", "REST API"],
+    features: ["Product catalog & bundles", "Wishlist & cart", "User accounts", "Checkout"],
+    image: coverEmsa,
+    status: "Live",
+    color: "#E8B4C8",
+    client: "EMSA Clinic Malaysia",
+    links: [{ label: "emsaclinicmy.com", url: "https://emsaclinicmy.com" }],
+  },
+  {
+    id: 18,
+    title: "SNL Global - POS & Stock Management",
+    category: "web",
+    type: "freelance",
+    platform: "Web",
+    description:
+      "Point-of-sale and inventory system covering sales transactions, stock tracking and reporting.",
+    technologies: ["Next.js", "React", "REST API"],
+    features: ["Sales transactions", "Stock tracking", "Reporting"],
+    status: "Live",
+    color: "#00D9FF",
+    client: "SNL Global",
+    links: [{ label: "snl-global.web.id", url: "https://snl-global.web.id" }],
+  },
+  {
+    id: 19,
+    title: "Ansel Enamel Tank Calculator",
+    category: "web",
+    type: "freelance",
+    platform: "Web",
+    description:
+      "Calculation tool for Ansel's enamel (glass-fused-to-steel) storage tanks, used to estimate tank specifications and requirements.",
+    technologies: ["React", "Vite", "JavaScript"],
+    features: ["Tank specification estimates", "Requirement calculations"],
+    image: coverAnsel,
+    status: "Live",
+    color: "#059669",
+    client: "Ansel",
+    links: [{ label: "gfst-calculator.vercel.app", url: "https://gfst-calculator.vercel.app" }],
+  },
   {
     id: 9,
     title: "Music Rent - Instrument Rental Platform",
@@ -636,10 +864,7 @@ export const projects = [
     ],
     contribution:
       "Developed the mobile app using React Native. Focused on complex Integrasi API for the rental instrument catalog and Stripe payments, building a fluid UI for Android and iOS, and using Firebase for real-time data persistence.",
-    image:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80",
     status: "Live",
-    year: "2024",
     color: "#8A2BE2",
     client: "Private Client",
     githubUrl: "https://github.com/kunandika16/musicrent.git",
@@ -668,21 +893,17 @@ export const projects = [
     ],
     contribution:
       "Built this utility using Flutter. Implemented complex Integrasi API with Google Apps Script for cloud synchronization, handled core NFC scanning logic, and integrated background GPS services for accurate location logging.",
-    image:
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80",
     status: "Live",
-    year: "2024",
     color: "#00D9FF",
     client: "Logistics Company",
     githubUrl: "https://github.com/kunandika16/nfc-field-logger.git",
   },
 
-  // Startup Project
   {
     id: 4,
     title: "TemuHobi - Sports Community Platform",
     category: "web",
-    type: "startup",
+    type: "freelance",
     platform: "Web",
     description:
       "Innovative sports community platform designed to connect sports enthusiasts and facilitate sporting activities. Currently in the development and planning phase. The application has not been launched yet and is not yet available for public access as the startup operations are still being prepared.",
@@ -702,12 +923,9 @@ export const projects = [
     ],
     contribution:
       "Designing and developing the web frontend from scratch using React. Currently focusing on modular components for upcoming Integrasi API, developing partner matching algorithms, and ensuring a premium user journey.",
-    image:
-      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80",
     status: "In Progress / Not Launched",
-    year: "2025",
     color: "#E8B4C8",
-    client: "Startup Venture",
+    client: "TemuHobi (Indigo Startup Program)",
   },
 
   // UI/UX Project
@@ -735,8 +953,6 @@ export const projects = [
     ],
     contribution:
       "Conducted extensive user research at hospital pharmacies. Designed the high-fidelity prototypes and mapped out the Integrasi API flow between patients and pharmacists to ensure a smooth, error-free drug pickup experience.",
-    image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
     status: "Completed",
     year: "2022",
     color: "#9333EA",
@@ -768,8 +984,6 @@ export const projects = [
     ],
     contribution:
       "Developed the data cleaning and processing scripts using Python. Implemented Integrasi API concepts for data ingestion from SP2020 repositories, applied string similarity algorithms to resolve errors, and created statistical visualizations.",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
     status: "Completed",
     year: "2022",
     color: "#059669",
@@ -780,22 +994,45 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    company: "PT Pos Indonesia",
-    position: "Software Developer (Frontend/Mobile)",
+    company: "Physiomobile (Malaysia)",
+    position: "Mobile Developer (Remote)",
+    duration: "Jan 2026 - Present",
+    location: "Remote",
+    description:
+      "Develop and maintain two production Flutter apps (customer and therapist) for a physiotherapy, rehab and home-care platform, released on Google Play and the App Store.",
+    highlights: [
+      "Ship regular releases on Android & iOS: new features, stability fixes and performance improvements",
+      "Faster job loading and better performance during peak hours",
+      "Integrate REST APIs for bookings, session tracking, assessments and notifications",
+      "Take part in code reviews with the backend team",
+    ],
+  },
+  {
+    id: 2,
+    company: "PT Pos Indonesia (Persero)",
+    position: "Software Developer (Front-end/Mobile)",
     duration: "Aug 2023 - Present",
     location: "Bandung, Indonesia",
     description:
-      "Building and shipping web & mobile features with React, Flutter, and Laravel. Delivered 30+ reusable components and improved load performance through code-splitting.",
+      "Built and maintained front-end and mobile applications for 7 internal products, including the core courier system (iPOS5) and HR, recruitment, attendance and knowledge-management platforms.",
     highlights: [
-      "Shipped 8+ production applications",
-      "Built 30+ reusable UI components",
-      "Improved performance with code-splitting",
-      "Collaborated with design & product teams",
+      "Delivered 7 internal products (web & mobile)",
+      "Role-based access control and multi-step form wizards with reusable form components",
+      "Code-splitting and lazy loading to improve load performance",
+      "Maintained CI/CD pipelines and participated in code reviews",
     ],
   },
 ];
 
 export const certifications = [
+  {
+    id: 8,
+    title: "Lab Assistant (Data Visualization, Machine Learning, Big Data)",
+    organization: "Syiah Kuala University",
+    type: "Lab Assistant",
+    duration: "Sep 2021 - May 2022",
+    description: "Led practical sessions for 20-60 students per class.",
+  },
   {
     id: 1,
     title: "Big Data Analytics Virtual Internship Experience",
@@ -863,9 +1100,9 @@ export const certifications = [
 
 export const education = {
   institution: "Syiah Kuala University",
-  degree: "Bachelor of Computer Science",
-  major: "Computer Science",
+  degree: "Bachelor's Degree in Informatics (Computer Science)",
+  major: "Informatics, Faculty of Mathematics and Natural Sciences",
   duration: "Aug 2018 - Sep 2022",
-  gpa: "3.77/4.0",
-  location: "Aceh, Indonesia",
+  gpa: "3.77/4.00",
+  location: "Banda Aceh, Indonesia",
 };

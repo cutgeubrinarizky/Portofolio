@@ -1,5 +1,10 @@
 import React from "react";
-import { personalInfo, education, certifications } from "../data/mockData";
+import {
+  personalInfo,
+  education,
+  certifications,
+  stats,
+} from "../data/mockData";
 import { MapPin, Mail, Linkedin, GraduationCap, Award } from "lucide-react";
 
 const About = () => {
@@ -117,14 +122,14 @@ const About = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-[#1A1A1D] rounded-xl p-6 border border-[#2D2D30] hover:border-[#E8B4C8]/50 transition-all duration-300 text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] bg-clip-text text-transparent mb-2">
-                    2+
+                    {stats[0].value}
                   </div>
                   <div className="text-white/60 text-sm">Years Experience</div>
                 </div>
 
                 <div className="bg-[#1A1A1D] rounded-xl p-6 border border-[#2D2D30] hover:border-[#FF6B9D]/50 transition-all duration-300 text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-[#FF6B9D] to-[#00D9FF] bg-clip-text text-transparent mb-2">
-                    8+
+                    {stats[1].value}
                   </div>
                   <div className="text-white/60 text-sm">
                     Projects Delivered
@@ -133,14 +138,14 @@ const About = () => {
 
                 <div className="bg-[#1A1A1D] rounded-xl p-6 border border-[#2D2D30] hover:border-[#00D9FF]/50 transition-all duration-300 text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-[#00D9FF] to-[#E8B4C8] bg-clip-text text-transparent mb-2">
-                    30+
+                    {stats[2].value}
                   </div>
                   <div className="text-white/60 text-sm">UI Components</div>
                 </div>
 
                 <div className="bg-[#1A1A1D] rounded-xl p-6 border border-[#2D2D30] hover:border-[#E8B4C8]/50 transition-all duration-300 text-center">
                   <div className="text-4xl font-bold bg-gradient-to-r from-[#E8B4C8] to-[#00D9FF] bg-clip-text text-transparent mb-2">
-                    3.77
+                    {stats[3].value}
                   </div>
                   <div className="text-white/60 text-sm">GPA Score</div>
                 </div>
@@ -157,7 +162,7 @@ const About = () => {
               </span>
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
-              {certifications.slice(0, 6).map((cert, index) => (
+              {certifications.map((cert, index) => (
                 <div
                   key={cert.id}
                   className="bg-[#1A1A1D] rounded-xl p-5 border border-[#2D2D30] hover:border-[#00FFFF]/50 transition-all duration-300"
