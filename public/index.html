@@ -2,8 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#0F0F10" />
+        <meta name="theme-color" content="#0F0F10" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#FAF7F9" media="(prefers-color-scheme: light)" />
         <title>Cut Geubrina Rizky | Mobile Developer (Flutter) & Front-end Developer (React)</title>
         <meta
             name="description"
@@ -20,15 +23,26 @@
             property="og:description"
             content="Flutter and React/Next.js developer. Production apps on Google Play & App Store, 7 internal products at PT Pos Indonesia."
         />
-        <meta property="og:image" content="https://portofolio-gebi.vercel.app/foto.jpeg" />
+        <meta property="og:image" content="https://portofolio-gebi.vercel.app/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Cut Geubrina Rizky, Flutter & React Developer portfolio" />
 
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Cut Geubrina Rizky | Mobile & Front-end Developer" />
         <meta
             name="twitter:description"
             content="Flutter and React/Next.js developer. Production apps on Google Play & App Store, 7 internal products at PT Pos Indonesia."
         />
-        <meta name="twitter:image" content="https://portofolio-gebi.vercel.app/foto.jpeg" />
+        <meta name="twitter:image" content="https://portofolio-gebi.vercel.app/og-image.jpg" />
+        <script>
+            try {
+                var t = localStorage.getItem("theme");
+                if (t === "light" || (!t && window.matchMedia("(prefers-color-scheme: light)").matches)) {
+                    document.documentElement.classList.add("light");
+                }
+            } catch (e) {}
+        </script>
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>

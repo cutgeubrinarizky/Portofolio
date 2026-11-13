@@ -3,6 +3,8 @@ import { personalInfo } from '../data/mockData';
 import { Mail, MapPin, Linkedin, Github, Send } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
 
+const WEB3FORMS_KEY = '6845478a-20e3-48f9-b4d6-028caf29eb43';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -15,24 +17,52 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon!",
-    });
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setSending(true);
+    try {
+      // Web3Forms forwards the message straight to my inbox (public access key, no backend needed)
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: `[Portfolio] ${formData.subject}`,
+          message: formData.message,
+          from_name: 'Portfolio Website',
+          replyto: formData.email,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success !== true) throw new Error(data.message || 'Failed');
+      toast({
+        title: 'Message sent!',
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      toast({
+        variant: 'destructive',
+        title: 'Message could not be sent',
+        description: `Please email me directly at ${personalInfo.email}.`,
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-[#2D2D30] via-[#1A1A1D] to-[#0F0F10] relative">
+    <section id="contact" className="py-20 bg-gradient-to-b from-surface2 via-surface to-base relative">
       {/* Final section elements */}
-      <div className="absolute inset-0 opacity-4">
+      <div className="absolute inset-0 pointer-events-none opacity-4">
         <div className="absolute top-40 left-20 w-24 h-24 border border-[#00D9FF]/20 rotate-45" style={{clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)'}} />
         <div className="absolute bottom-40 right-20 w-32 h-32 border border-[#E8B4C8]/15 rounded-full" />
       </div>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6" data-reveal>
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -41,8 +71,8 @@ const Contact = () => {
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] mx-auto rounded-full mb-6" />
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+          <p className="text-ink/70 text-lg max-w-2xl mx-auto">
+            Have a project or role in mind? Send me a message and I'll get back to you soon.
           </p>
         </div>
 
@@ -55,13 +85,13 @@ const Contact = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300" />
                 <a 
                   href={`mailto:${personalInfo.email}`}
-                  className="relative bg-[#1A1A1D] rounded-2xl p-6 border border-[#2D2D30] hover:border-[#E8B4C8] transition-all duration-300 flex items-center gap-4 block"
+                  className="relative bg-surface rounded-2xl p-6 border border-surface2 hover:border-[#E8B4C8] transition-all duration-300 flex items-center gap-4 block"
                 >
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#E8B4C8] to-[#FF6B9D] flex items-center justify-center flex-shrink-0">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-1">Email</h3>
+                    <h3 className="text-ink font-semibold mb-1">Email</h3>
                     <p className="text-[#E8B4C8] text-sm">{personalInfo.email}</p>
                   </div>
                 </a>
@@ -70,12 +100,12 @@ const Contact = () => {
               {/* Location Card */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FF6B9D] to-[#00D9FF] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300" />
-                <div className="relative bg-[#1A1A1D] rounded-2xl p-6 border border-[#2D2D30] flex items-center gap-4">
+                <div className="relative bg-surface rounded-2xl p-6 border border-surface2 flex items-center gap-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#FF6B9D] to-[#00D9FF] flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-1">Location</h3>
+                    <h3 className="text-ink font-semibold mb-1">Location</h3>
                     <p className="text-[#E8B4C8] text-sm">{personalInfo.location}</p>
                   </div>
                 </div>
@@ -84,8 +114,8 @@ const Contact = () => {
               {/* Social Links */}
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00D9FF] to-[#E8B4C8] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300" />
-                <div className="relative bg-[#1A1A1D] rounded-2xl p-6 border border-[#2D2D30]">
-                  <h3 className="text-white font-semibold mb-4">Connect With Me</h3>
+                <div className="relative bg-surface rounded-2xl p-6 border border-surface2">
+                  <h3 className="text-ink font-semibold mb-4">Connect With Me</h3>
                   <div className="flex gap-4">
                     <a
                       href={`https://${personalInfo.linkedin}`}
@@ -114,12 +144,12 @@ const Contact = () => {
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#E8B4C8] via-[#FF6B9D] to-[#00D9FF] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
                 <form 
                   onSubmit={handleSubmit}
-                  className="relative bg-[#1A1A1D] rounded-2xl p-8 border border-[#2D2D30]"
+                  className="relative bg-surface rounded-2xl p-8 border border-surface2"
                 >
                   <div className="space-y-6">
                     {/* Name */}
                     <div>
-                      <label htmlFor="name" className="block text-white font-medium mb-2">
+                      <label htmlFor="name" className="block text-ink font-medium mb-2">
                         Your Name
                       </label>
                       <input
@@ -129,14 +159,14 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-[#2D2D30] border border-[#3D3D42] text-white placeholder-white/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
+                        className="w-full px-4 py-3 rounded-lg bg-surface2 border border-line text-ink placeholder-ink/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
                         placeholder="Enter your name"
                       />
                     </div>
 
                     {/* Email */}
                     <div>
-                      <label htmlFor="email" className="block text-white font-medium mb-2">
+                      <label htmlFor="email" className="block text-ink font-medium mb-2">
                         Your Email
                       </label>
                       <input
@@ -146,14 +176,14 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-[#2D2D30] border border-[#3D3D42] text-white placeholder-white/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
+                        className="w-full px-4 py-3 rounded-lg bg-surface2 border border-line text-ink placeholder-ink/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
                         placeholder="your.email@example.com"
                       />
                     </div>
 
                     {/* Subject */}
                     <div>
-                      <label htmlFor="subject" className="block text-white font-medium mb-2">
+                      <label htmlFor="subject" className="block text-ink font-medium mb-2">
                         Subject
                       </label>
                       <input
@@ -163,14 +193,14 @@ const Contact = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-[#2D2D30] border border-[#3D3D42] text-white placeholder-white/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
+                        className="w-full px-4 py-3 rounded-lg bg-surface2 border border-line text-ink placeholder-ink/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all"
                         placeholder="What's this about?"
                       />
                     </div>
 
                     {/* Message */}
                     <div>
-                      <label htmlFor="message" className="block text-white font-medium mb-2">
+                      <label htmlFor="message" className="block text-ink font-medium mb-2">
                         Message
                       </label>
                       <textarea
@@ -180,7 +210,7 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         rows="5"
-                        className="w-full px-4 py-3 rounded-lg bg-[#2D2D30] border border-[#3D3D42] text-white placeholder-white/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-lg bg-surface2 border border-line text-ink placeholder-ink/40 focus:outline-none focus:border-[#E8B4C8] focus:ring-2 focus:ring-[#E8B4C8]/20 transition-all resize-none"
                         placeholder="Tell me about your project or idea..."
                       />
                     </div>
@@ -188,10 +218,11 @@ const Contact = () => {
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full px-8 py-4 rounded-lg bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] text-white font-semibold hover:shadow-lg hover:shadow-[#FF6B9D]/50 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
+                      disabled={sending}
+                      className="disabled:opacity-60 disabled:cursor-not-allowed w-full px-8 py-4 rounded-lg bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] text-white font-semibold hover:shadow-lg hover:shadow-[#FF6B9D]/50 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
                     >
                       <Send className="w-5 h-5" />
-                      Send Message
+                      {sending ? 'Sending...' : 'Send Message'}
                     </button>
                   </div>
                 </form>

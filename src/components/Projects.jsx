@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { projects } from "../data/mockData";
+import { caseStudyByProjectId } from "../data/caseStudies";
 import {
   ExternalLink,
   Smartphone,
@@ -25,8 +27,28 @@ const typeLabels = {
 // Card/header image: explicit image, otherwise the first real screenshot
 const getCover = (project) => project.image || project.screenshots?.[0]?.url;
 
+const statusClass = (status) =>
+  status === "Live"
+    ? "bg-green-500/85 text-white"
+    : status === "Completed"
+      ? "bg-slate-600/85 text-white"
+      : "bg-amber-500/85 text-white";
+
+const INITIAL_COUNT = 9;
+
+// Tech filter: label -> matcher on project.technologies
+const techFilters = [
+  { id: "flutter", label: "Flutter", match: (t) => /flutter/i.test(t) },
+  { id: "react", label: "React", match: (t) => /^react$/i.test(t) || /react native/i.test(t) },
+  { id: "next", label: "Next.js", match: (t) => /next/i.test(t) },
+  { id: "php", label: "PHP", match: (t) => /php|codeigniter|laravel/i.test(t) },
+  { id: "go", label: "Go", match: (t) => /\b(golang|go|gin)\b/i.test(t) },
+];
+
 const Projects = () => {
   const [filter, setFilter] = useState("all");
+  const [showAll, setShowAll] = useState(false);
+  const [tech, setTech] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
   const [screenshotViewer, setScreenshotViewer] = useState({
     isOpen: false,
@@ -35,10 +57,10 @@ const Projects = () => {
     category: "",
   });
 
-  const filteredProjects =
-    filter === "all"
-      ? projects
-      : projects.filter((p) => p.type && p.type === filter);
+  const activeTech = techFilters.find((t) => t.id === tech);
+  const filteredProjects = projects
+    .filter((p) => filter === "all" || p.type === filter)
+    .filter((p) => !activeTech || p.technologies.some(activeTech.match));
 
   const openScreenshotViewer = (screenshots, index, category) => {
     setScreenshotViewer({
@@ -96,10 +118,10 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-[#0F0F10] via-[#1A1A1D] to-[#2D2D30] relative"
+      className="py-20 bg-gradient-to-b from-base via-surface to-surface2 relative overflow-x-clip"
     >
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-3">
+      <div className="absolute inset-0 pointer-events-none opacity-3">
         <div
           className="absolute top-10 left-10 w-24 h-24 border border-[#E8B4C8]/20 rotate-12"
           style={{
@@ -109,7 +131,7 @@ const Projects = () => {
         />
         <div className="absolute bottom-20 right-20 w-20 h-20 border border-[#FF6B9D]/15 -rotate-45" />
       </div>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6" data-reveal>
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -118,11 +140,43 @@ const Projects = () => {
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] mx-auto rounded-full mb-6" />
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <p className="text-ink/70 text-lg max-w-2xl mx-auto">
             Production Flutter apps at Physiomobile, enterprise systems at PT
             Pos Indonesia, and freelance projects built with Flutter, React,
             Next.js, Astro and more.
           </p>
+        </div>
+
+        {/* Showreel: all project covers drifting sideways; hover pauses, click opens details */}
+        <div className="relative left-1/2 -ml-[50vw] w-screen mb-14 marquee-mask" aria-label="Project showreel">
+          {[projects].map((row, r) => (
+            <div key={r} className="marquee group/marquee overflow-hidden">
+              <div className={`marquee-track flex gap-5 w-max ${r === 1 ? "marquee-reverse" : ""}`}>
+                {[...row, ...row].map((p, i) => (
+                  <button
+                    key={`${p.id}-${i}`}
+                    onClick={() => setSelectedProject(p)}
+                    aria-hidden={i >= row.length}
+                    tabIndex={i >= row.length ? -1 : 0}
+                    className="group/card relative w-[240px] sm:w-[300px] aspect-[16/9] rounded-xl overflow-hidden border border-surface2 bg-surface flex-shrink-0 text-left hover:border-[#E8B4C8] transition-colors"
+                  >
+                    {getCover(p) && (
+                      <img
+                        src={getCover(p)}
+                        alt={p.title}
+                        decoding="async"
+                        className="w-full h-full object-cover object-top group-hover/card:scale-105 transition-transform duration-500"
+                      />
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent translate-y-full group-hover/card:translate-y-0 transition-transform duration-300">
+                      <p className="text-white text-sm font-semibold line-clamp-1">{p.title}</p>
+                      <p className="text-white/70 text-xs">{typeLabels[p.type] || p.client}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* Filter Buttons */}
@@ -137,11 +191,14 @@ const Projects = () => {
           ].map((f) => (
             <button
               key={f.id}
-              onClick={() => setFilter(f.id)}
+              onClick={() => {
+                setFilter(f.id);
+                setShowAll(false);
+              }}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 ${
                 filter === f.id
-                  ? "bg-gradient-to-r from-[#00FFFF] to-[#FF0080] text-black shadow-lg shadow-[#00FFFF]/30"
-                  : "bg-black/40 text-white/70 border border-[#00FFFF]/20 hover:border-[#00FFFF] hover:text-white backdrop-blur-xl"
+                  ? "bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] text-white shadow-lg shadow-[#FF6B9D]/20"
+                  : "bg-surface/60 text-ink/70 border border-ink/10 hover:border-[#E8B4C8]/60 hover:text-ink backdrop-blur-xl"
               }`}
             >
               {f.id === "all" && <Filter className="w-4 h-4" />}
@@ -151,26 +208,51 @@ const Projects = () => {
           ))}
         </div>
 
+        {/* Tech filter */}
+        <div className="flex flex-wrap justify-center items-center gap-2 -mt-6 mb-12">
+          <span className="text-xs uppercase tracking-[0.2em] text-ink/40 mr-1">Tech</span>
+          {techFilters.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => {
+                setTech(tech === t.id ? null : t.id);
+                setShowAll(false);
+              }}
+              className={`px-3 py-1.5 rounded-full text-sm transition-colors border ${
+                tech === t.id
+                  ? "bg-[#E8B4C8]/15 border-[#E8B4C8]/60 text-[#E8B4C8]"
+                  : "border-ink/10 text-ink/60 hover:text-ink hover:border-ink/30"
+              }`}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        {filteredProjects.length === 0 && (
+          <p className="text-center text-ink/50 mb-12">No projects match this filter combination.</p>
+        )}
+
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project, index) => (
+          {(showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_COUNT)).map((project, index) => (
             <div
               key={project.id}
-              className="group relative"
+              className="group relative h-full"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Card */}
-              <div className="bg-[#1A1A1D] rounded-2xl overflow-hidden border border-[#2D2D30] hover:border-[#E8B4C8] transition-all duration-300">
+              <div className="h-full flex flex-col bg-surface rounded-2xl overflow-hidden border border-surface2 hover:border-[#E8B4C8] transition-all duration-300">
                 {/* Image */}
                 <div
                   className={
                     getCover(project)
-                      ? "relative h-48 overflow-hidden bg-[#0F0F10]"
+                      ? "relative h-48 overflow-hidden bg-base"
                       : "relative h-14"
                   }
                 >
                   {getCover(project) && (
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={getCover(project)}
                       alt={project.title}
                       className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
@@ -181,9 +263,7 @@ const Projects = () => {
                   <div className="absolute top-4 right-4">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md ${
-                        project.status === "Live"
-                          ? "bg-green-500/80 text-white"
-                          : "bg-yellow-500/80 text-white"
+                        statusClass(project.status)
                       }`}
                     >
                       {project.status}
@@ -204,7 +284,7 @@ const Projects = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   {/* Project Type Header */}
                   <div className="flex items-center justify-between mb-3">
                     <span
@@ -227,21 +307,21 @@ const Projects = () => {
                       {typeLabels[project.type] || project.type || "Project"}
                     </span>
                     {project.year && (
-                      <span className="text-xs text-white/50 font-medium">
+                      <span className="text-xs text-ink/50 font-medium">
                         {project.year}
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#00FFFF] transition-colors mb-2">
+                  <h3 className="text-xl font-bold text-ink group-hover:text-[#E8B4C8] transition-colors mb-2">
                     {project.title}
                   </h3>
 
-                  <p className="text-[#00FFFF]/60 text-sm mb-3 font-medium">
+                  <p className="text-ink/50 text-sm mb-3 font-medium">
                     {project.client || "Client"}
                   </p>
 
-                  <p className="text-white/70 text-sm mb-4 line-clamp-2">
+                  <p className="text-ink/70 text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
 
@@ -250,45 +330,40 @@ const Projects = () => {
                     {project.technologies.slice(0, 3).map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-full text-xs font-medium bg-[#2D2D30] text-[#E8B4C8] border border-[#E8B4C8]/20"
+                        className="px-3 py-1 rounded-full text-xs font-medium bg-surface2 text-[#E8B4C8] border border-[#E8B4C8]/20"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#2D2D30] text-white/50">
+                      <span className="px-3 py-1 rounded-full text-xs font-medium bg-surface2 text-ink/50">
                         +{project.technologies.length - 3}
                       </span>
                     )}
                   </div>
 
-                  {/* Features */}
-                  <div className="space-y-1 mb-4">
-                    {project.features.slice(0, 2).map((feature, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-2 text-xs text-white/60"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#E8B4C8]" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-4 mt-auto">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="flex items-center gap-2 text-sm font-medium text-[#00FFFF] hover:text-[#FF0080] transition-colors group/link"
+                      className="flex items-center gap-2 text-sm font-medium text-[#E8B4C8] hover:text-[#FF6B9D] transition-colors group/link"
                     >
                       <span>View Details</span>
                       <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                     </button>
+                    {caseStudyByProjectId(project.id) && (
+                      <Link
+                        to={`/case-study/${caseStudyByProjectId(project.id).slug}`}
+                        className="text-sm font-semibold px-3 py-1 rounded-full bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] text-white hover:opacity-90 transition-opacity"
+                      >
+                        Case study
+                      </Link>
+                    )}
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 rounded-full bg-black/40 text-white/50 hover:text-white hover:bg-[#00FFFF]/20 transition-all border border-white/10"
+                        className="p-2 rounded-full bg-black/40 text-ink/50 hover:text-ink hover:bg-[#00FFFF]/20 transition-all border border-ink/10"
                         onClick={(e) => e.stopPropagation()}
                         title="View on GitHub"
                       >
@@ -301,11 +376,24 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {filteredProjects.length > INITIAL_COUNT && (
+          <div className="relative z-10 flex justify-center mt-10">
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="px-8 py-3 rounded-lg border border-[#E8B4C8]/40 text-[#E8B4C8] font-semibold hover:bg-[#E8B4C8]/10 transition-colors"
+            >
+              {showAll
+                ? "Show less"
+                : `Show all ${filteredProjects.length} projects`}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Project Detail Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div className="force-dark fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="relative w-full max-w-4xl max-h-[90vh] overflow-hidden bg-gradient-to-br from-[#0A0A0F] to-[#1A1A2E] rounded-2xl border border-[#00FFFF]/20 shadow-2xl">
             <div className="overflow-y-auto max-h-[90vh] scrollbar-hide">
               {/* Close button */}
@@ -324,7 +412,7 @@ const Projects = () => {
               >
                 {getCover(selectedProject) && (
                   <>
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={getCover(selectedProject)}
                       alt={selectedProject.title}
                       className="w-full h-full object-cover object-top"
@@ -341,10 +429,10 @@ const Projects = () => {
                       : "px-8"
                   }
                 >
-                  <h2 className="text-3xl font-bold text-white mb-2">
+                  <h2 className="text-3xl font-bold text-ink mb-2">
                     {selectedProject.title}
                   </h2>
-                  <div className="flex items-center gap-4 text-sm text-white/80">
+                  <div className="flex items-center gap-4 text-sm text-ink/80">
                     <span className="flex items-center gap-1">
                       {selectedProject.category === "mobile" ? (
                         <Smartphone className="w-4 h-4" />
@@ -361,9 +449,7 @@ const Projects = () => {
                     )}
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        selectedProject.status === "Live"
-                          ? "bg-green-500/80 text-white"
-                          : "bg-yellow-500/80 text-white"
+                        statusClass(selectedProject.status)
                       }`}
                     >
                       {selectedProject.status}
@@ -384,19 +470,19 @@ const Projects = () => {
                         "Project"
                       ).toUpperCase()}
                     </div>
-                    <div className="text-white/60 text-sm">Project Type</div>
+                    <div className="text-ink/60 text-sm">Project Type</div>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-black/20 border border-[#FF0080]/20">
                     <div className="text-[#FF0080] font-bold text-lg">
                       {selectedProject.client || "Client"}
                     </div>
-                    <div className="text-white/60 text-sm">Client</div>
+                    <div className="text-ink/60 text-sm">Client</div>
                   </div>
                   <div className="text-center p-4 rounded-lg bg-black/20 border border-[#8A2BE2]/20">
                     <div className="text-[#8A2BE2] font-bold text-lg">
                       {selectedProject.platform}
                     </div>
-                    <div className="text-white/60 text-sm">Platform</div>
+                    <div className="text-ink/60 text-sm">Platform</div>
                   </div>
                 </div>
 
@@ -412,14 +498,14 @@ const Projects = () => {
                         href={selectedProject.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black/40 text-white hover:text-[#00FFFF] hover:bg-[#00FFFF]/10 transition-all border border-[#00FFFF]/20"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black/40 text-ink hover:text-[#00FFFF] hover:bg-[#00FFFF]/10 transition-all border border-[#00FFFF]/20"
                       >
                         <Github className="w-5 h-5" />
                         <span>View Source Code</span>
                       </a>
                     )}
                   </div>
-                  <p className="text-white/70 leading-relaxed">
+                  <p className="text-ink/70 leading-relaxed">
                     {selectedProject.description}
                   </p>
                   {selectedProject.links?.length > 0 && (
@@ -448,7 +534,7 @@ const Projects = () => {
                       What I Did (Personal Journey)
                     </h3>
                     <div className="p-5 rounded-xl bg-[#FFD700]/5 border border-[#FFD700]/10 border-l-4 border-l-[#FFD700]">
-                      <p className="text-white/80 leading-relaxed italic">
+                      <p className="text-ink/80 leading-relaxed italic">
                         "{selectedProject.contribution}"
                       </p>
                     </div>
@@ -485,7 +571,7 @@ const Projects = () => {
                         className="flex items-start gap-3 p-3 rounded-lg bg-black/20 border border-[#8A2BE2]/20"
                       >
                         <div className="w-2 h-2 rounded-full bg-[#8A2BE2] mt-2 flex-shrink-0" />
-                        <span className="text-white/80">{feature}</span>
+                        <span className="text-ink/80">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -515,7 +601,7 @@ const Projects = () => {
                       {/* Screenshot Note */}
                       {selectedProject.screenshotNote && (
                         <div className="mb-4 p-4 rounded-lg bg-gradient-to-r from-[#00FFFF]/10 to-[#FF0080]/10 border border-[#00FFFF]/20">
-                          <p className="text-sm text-white/80 leading-relaxed">
+                          <p className="text-sm text-ink/80 leading-relaxed">
                             {selectedProject.screenshotNote}
                           </p>
                         </div>
@@ -541,14 +627,14 @@ const Projects = () => {
                                   : "aspect-video"
                               }`}
                             >
-                              <img
+                              <img loading="lazy" decoding="async"
                                 src={screenshot.url}
                                 alt={screenshot.title}
                                 className="w-full h-full object-cover object-top transition-transform duration-300 group-hover/screenshot:scale-105"
                               />
                               {screenshot.blurAreas && (
                                 <div className="absolute top-2 right-2">
-                                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-black/60 text-white/70 backdrop-blur-sm border border-white/20">
+                                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-black/60 text-ink/70 backdrop-blur-sm border border-ink/20">
                                     Privacy Protected
                                   </span>
                                 </div>
@@ -573,10 +659,10 @@ const Projects = () => {
                               </div>
                             </div>
                             <div className="p-3 bg-gradient-to-b from-black/40 to-black/60">
-                              <h4 className="text-xs font-bold text-white mb-1 line-clamp-1">
+                              <h4 className="text-xs font-bold text-ink mb-1 line-clamp-1">
                                 {screenshot.title}
                               </h4>
-                              <p className="text-[10px] text-white/60 line-clamp-2 leading-relaxed">
+                              <p className="text-[10px] text-ink/60 line-clamp-2 leading-relaxed">
                                 {screenshot.description}
                               </p>
                             </div>
@@ -594,13 +680,13 @@ const Projects = () => {
       {/* Screenshot Viewer Modal with Slider */}
       {screenshotViewer.isOpen && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-md"
+          className="force-dark fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-md"
           onClick={closeScreenshotViewer}
         >
           {/* Close button */}
           <button
             onClick={closeScreenshotViewer}
-            className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+            className="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-ink/10 border border-ink/20 flex items-center justify-center text-ink hover:bg-ink/20 transition-all"
           >
             <X className="w-6 h-6" />
           </button>
@@ -612,7 +698,7 @@ const Projects = () => {
                 e.stopPropagation();
                 prevScreenshot();
               }}
-              className="absolute left-6 z-10 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+              className="absolute left-6 z-10 w-12 h-12 rounded-full bg-ink/10 border border-ink/20 flex items-center justify-center text-ink hover:bg-ink/20 transition-all"
             >
               <svg
                 className="w-6 h-6"
@@ -637,7 +723,7 @@ const Projects = () => {
                 e.stopPropagation();
                 nextScreenshot();
               }}
-              className="absolute right-6 z-10 w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all"
+              className="absolute right-6 z-10 w-12 h-12 rounded-full bg-ink/10 border border-ink/20 flex items-center justify-center text-ink hover:bg-ink/20 transition-all"
             >
               <svg
                 className="w-6 h-6"
@@ -661,7 +747,7 @@ const Projects = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src={
                   screenshotViewer.screenshots[screenshotViewer.currentIndex]
                     ?.url
@@ -677,7 +763,7 @@ const Projects = () => {
               {screenshotViewer.screenshots[screenshotViewer.currentIndex]
                 ?.blurAreas && (
                 <div className="absolute top-4 right-4">
-                  <span className="px-3 py-2 rounded-full text-sm font-medium bg-black/70 text-white backdrop-blur-sm border border-white/30">
+                  <span className="px-3 py-2 rounded-full text-sm font-medium bg-black/70 text-white backdrop-blur-sm border border-ink/30">
                     🔒 Privacy Protected
                   </span>
                 </div>
@@ -686,20 +772,20 @@ const Projects = () => {
 
             {/* Image info */}
             <div className="mt-4 text-center">
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-ink mb-2">
                 {
                   screenshotViewer.screenshots[screenshotViewer.currentIndex]
                     ?.title
                 }
               </h3>
-              <p className="text-white/70 mb-2">
+              <p className="text-ink/70 mb-2">
                 {
                   screenshotViewer.screenshots[screenshotViewer.currentIndex]
                     ?.description
                 }
               </p>
               {screenshotViewer.screenshots.length > 1 && (
-                <p className="text-white/50 text-sm">
+                <p className="text-ink/50 text-sm">
                   {screenshotViewer.currentIndex + 1} /{" "}
                   {screenshotViewer.screenshots.length}
                 </p>

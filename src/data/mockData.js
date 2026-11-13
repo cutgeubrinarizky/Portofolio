@@ -1,68 +1,80 @@
 // Screenshot imports
-import explora1 from "../components/screenshots/explora-1.png";
-import explora2 from "../components/screenshots/explora-2.png";
-import explora3 from "../components/screenshots/explora-3.png";
-import explora4 from "../components/screenshots/explora-4.png";
-import explora5 from "../components/screenshots/explora-5.png";
-import livie1 from "../components/screenshots/livie-1.png";
-import livie2 from "../components/screenshots/livie-2.png";
-import livie3 from "../components/screenshots/livie-3.png";
-import livie4 from "../components/screenshots/livie-4.png";
-import livie5 from "../components/screenshots/livie-5.png";
-import livie6 from "../components/screenshots/livie-6.png";
-import livie7 from "../components/screenshots/livie-7.png";
-import livie8 from "../components/screenshots/livie-8.png";
-import livie9 from "../components/screenshots/livie-9.png";
-import livie10 from "../components/screenshots/livie-10.png";
-import livie11 from "../components/screenshots/livie-11.png";
-import livie12 from "../components/screenshots/livie-12.png";
-import livie13 from "../components/screenshots/livie-13.png";
-import livie14 from "../components/screenshots/livie-14.png";
-import simtkk1 from "../components/screenshots/simtkk-1.png";
-import simtkk2 from "../components/screenshots/simtkk-2.png";
-import simtkk3 from "../components/screenshots/simtkk-3.png";
-import simtkk4 from "../components/screenshots/simtkk-4.png";
-import simtkk5 from "../components/screenshots/simtkk-5.png";
-import recruitment1 from "../components/screenshots/recruitment-1.png";
-import recruitment2 from "../components/screenshots/recruitment-2.png";
-import recruitment3 from "../components/screenshots/recruitment-3.png";
-import recruitment4 from "../components/screenshots/recruitment-4.png";
-import recruitment5 from "../components/screenshots/recruitment-5.png";
-import recruitment6 from "../components/screenshots/recruitment-6.png";
-import recruitment7 from "../components/screenshots/recruitment-7.png";
-import recruitment8 from "../components/screenshots/recruitment-8.png";
-import recruitment9 from "../components/screenshots/recruitment-9.png";
-import jobmaster1 from "../components/screenshots/jobmaster-1.png";
-import jobmaster2 from "../components/screenshots/jobmaster-2.png";
-import jobmaster3 from "../components/screenshots/jobmaster-3.png";
-import jobmaster4 from "../components/screenshots/jobmaster-4.png";
-import jobmaster5 from "../components/screenshots/jobmaster-5.png";
-import jobmaster6 from "../components/screenshots/jobmaster-6.png";
-import jobmaster7 from "../components/screenshots/jobmaster-7.png";
-import jobmaster8 from "../components/screenshots/jobmaster-8.png";
-import physioCustomer1 from "../components/screenshots/physio-customer-1.jpg";
-import physioCustomer2 from "../components/screenshots/physio-customer-2.jpg";
-import physioCustomer3 from "../components/screenshots/physio-customer-3.jpg";
-import physioCustomer4 from "../components/screenshots/physio-customer-4.jpg";
-import physioTherapist1 from "../components/screenshots/physio-therapist-1.jpg";
-import physioTherapist2 from "../components/screenshots/physio-therapist-2.jpg";
-import physioTherapist3 from "../components/screenshots/physio-therapist-3.jpg";
-import physioTherapist4 from "../components/screenshots/physio-therapist-4.jpg";
-import coverPhysioCustomer from "../components/screenshots/cover-physiomobile-customer.jpg";
-import coverPhysioTherapist from "../components/screenshots/cover-physiomobile-therapist.jpg";
-import coverRecht from "../components/screenshots/cover-recht.jpg";
-import coverEmsa from "../components/screenshots/cover-emsa.jpg";
-import coverAnsel from "../components/screenshots/cover-ansel.jpg";
-import coverLivie from "../components/screenshots/cover-livie.jpg";
-import coverJobmaster from "../components/screenshots/cover-jobmaster.jpg";
-import coverSimtkk from "../components/screenshots/cover-simtkk.jpg";
-import coverRecruitment from "../components/screenshots/cover-recruitment.jpg";
-import coverExplora from "../components/screenshots/cover-explora.jpg";
+import logoPhysio from "../components/logos/physio.svg";
+import logoPosInd from "../components/logos/posind.png";
+import explora1 from "../components/screenshots/explora-1.webp";
+import explora2 from "../components/screenshots/explora-2.webp";
+import explora3 from "../components/screenshots/explora-3.webp";
+import explora4 from "../components/screenshots/explora-4.webp";
+import explora5 from "../components/screenshots/explora-5.webp";
+import livie1 from "../components/screenshots/livie-1.webp";
+import livie2 from "../components/screenshots/livie-2.webp";
+import livie3 from "../components/screenshots/livie-3.webp";
+import livie4 from "../components/screenshots/livie-4.webp";
+import livie5 from "../components/screenshots/livie-5.webp";
+import livie6 from "../components/screenshots/livie-6.webp";
+import livie7 from "../components/screenshots/livie-7.webp";
+import livie8 from "../components/screenshots/livie-8.webp";
+import livie9 from "../components/screenshots/livie-9.webp";
+import livie10 from "../components/screenshots/livie-10.webp";
+import livie11 from "../components/screenshots/livie-11.webp";
+import livie12 from "../components/screenshots/livie-12.webp";
+import livie13 from "../components/screenshots/livie-13.webp";
+import livie14 from "../components/screenshots/livie-14.webp";
+import simtkk1 from "../components/screenshots/simtkk-1.webp";
+import simtkk2 from "../components/screenshots/simtkk-2.webp";
+import simtkk3 from "../components/screenshots/simtkk-3.webp";
+import simtkk4 from "../components/screenshots/simtkk-4.webp";
+import simtkk5 from "../components/screenshots/simtkk-5.webp";
+import recruitment1 from "../components/screenshots/recruitment-1.webp";
+import recruitment2 from "../components/screenshots/recruitment-2.webp";
+import recruitment3 from "../components/screenshots/recruitment-3.webp";
+import recruitment4 from "../components/screenshots/recruitment-4.webp";
+import recruitment5 from "../components/screenshots/recruitment-5.webp";
+import recruitment6 from "../components/screenshots/recruitment-6.webp";
+import recruitment7 from "../components/screenshots/recruitment-7.webp";
+import recruitment8 from "../components/screenshots/recruitment-8.webp";
+import recruitment9 from "../components/screenshots/recruitment-9.webp";
+import jobmaster1 from "../components/screenshots/jobmaster-1.webp";
+import jobmaster2 from "../components/screenshots/jobmaster-2.webp";
+import jobmaster3 from "../components/screenshots/jobmaster-3.webp";
+import jobmaster4 from "../components/screenshots/jobmaster-4.webp";
+import jobmaster5 from "../components/screenshots/jobmaster-5.webp";
+import jobmaster6 from "../components/screenshots/jobmaster-6.webp";
+import jobmaster7 from "../components/screenshots/jobmaster-7.webp";
+import jobmaster8 from "../components/screenshots/jobmaster-8.webp";
+import physioCustomer1 from "../components/screenshots/physio-customer-1.webp";
+import physioCustomer2 from "../components/screenshots/physio-customer-2.webp";
+import physioCustomer3 from "../components/screenshots/physio-customer-3.webp";
+import physioCustomer4 from "../components/screenshots/physio-customer-4.webp";
+import physioTherapist1 from "../components/screenshots/physio-therapist-1.webp";
+import physioTherapist2 from "../components/screenshots/physio-therapist-2.webp";
+import physioTherapist3 from "../components/screenshots/physio-therapist-3.webp";
+import physioTherapist4 from "../components/screenshots/physio-therapist-4.webp";
+import coverPhysioCustomer from "../components/screenshots/cover-physiomobile-customer.webp";
+import coverPhysioTherapist from "../components/screenshots/cover-physiomobile-therapist.webp";
+import coverRecht from "../components/screenshots/cover-recht.webp";
+import coverEmsa from "../components/screenshots/cover-emsa.webp";
+import coverAnsel from "../components/screenshots/cover-ansel.webp";
+import coverLivie from "../components/screenshots/cover-livie.webp";
+import coverJobmaster from "../components/screenshots/cover-jobmaster.webp";
+import coverSimtkk from "../components/screenshots/cover-simtkk.webp";
+import coverRecruitment from "../components/screenshots/cover-recruitment.webp";
+import coverExplora from "../components/screenshots/cover-explora.webp";
+import coverIpos5 from "../components/screenshots/cover-ipos5.webp";
+import coverSipendi from "../components/screenshots/cover-sipendi.webp";
+import coverBackendApi from "../components/screenshots/cover-backend-api.webp";
+import coverSnlGlobal from "../components/screenshots/cover-snl-global.webp";
+import coverMusicRent from "../components/screenshots/cover-music-rent.webp";
+import coverNfcLogger from "../components/screenshots/cover-nfc-logger.webp";
+import coverTemuhobi from "../components/screenshots/cover-temuhobi.webp";
+import coverCokUbat from "../components/screenshots/cover-cok-ubat.webp";
+import coverBpsSimilarity from "../components/screenshots/cover-bps-similarity.webp";
 
 // Mock data for portfolio
 export const personalInfo = {
   name: "Cut Geubrina Rizky",
   title: "Mobile Developer (Flutter) | Front-end Developer (React)",
+  headline: "Flutter & React Developer",
   tagline:
     "Building production Flutter apps and React/Next.js products across health-tech, logistics and enterprise HR",
   location: "Bandung, Indonesia",
@@ -78,49 +90,65 @@ export const personalInfo = {
 
 export const stats = [
   { value: "3+", label: "Years Experience" },
-  { value: "15+", label: "Projects Delivered" },
-  { value: "30+", label: "UI Components" },
-  { value: "3.77", label: "GPA Score" },
+  { value: "1K+", label: "App Downloads" },
+  { value: "7", label: "Products at Pos Indonesia" },
+  { value: "19", label: "Projects Shipped" },
 ];
 
-export const skills = {
-  languages: [
-    { name: "Dart (Flutter)", level: 90 },
-    { name: "JavaScript", level: 90 },
-    { name: "TypeScript", level: 80 },
-    { name: "PHP", level: 80 },
-    { name: "Go (Golang)", level: 70 },
-    { name: "SQL", level: 75 },
-  ],
-  frameworks: [
-    { name: "Flutter", icon: "📱" },
-    { name: "React", icon: "⚛️" },
-    { name: "Next.js", icon: "▲" },
-    { name: "Astro", icon: "🚀" },
-    { name: "React Native", icon: "⚛️" },
-    { name: "Vite", icon: "⚡" },
-    { name: "Tailwind CSS", icon: "🎨" },
-    { name: "Material UI", icon: "💎" },
-    { name: "Bootstrap", icon: "🅱️" },
-    { name: "Laravel", icon: "🔺" },
-    { name: "CodeIgniter", icon: "🔥" },
-    { name: "Express.js", icon: "🚂" },
-    { name: "Provider / Bloc / GetX", icon: "🧩" },
-    { name: "Firebase (FCM)", icon: "🔔" },
-  ],
-  tools: [
-    { name: "Git (GitLab/GitHub)", icon: "🔀" },
-    { name: "CI/CD", icon: "♻️" },
-    { name: "Docker", icon: "🐳" },
-    { name: "Figma", icon: "🎨" },
-    { name: "Android Studio", icon: "🤖" },
-    { name: "Xcode", icon: "🍎" },
-    { name: "Apidog", icon: "🧪" },
-    { name: "DBeaver", icon: "🗄️" },
-    { name: "Lighthouse / Web Vitals", icon: "📈" },
-    { name: "Play Store & App Store", icon: "🛒" },
-  ],
-};
+// icon = Simple Icons slug (see brandIcons.js); omitted icons fall back to a generic glyph
+export const skills = [
+  {
+    group: "Mobile",
+    items: [
+      { name: "Flutter", icon: "flutter" },
+      { name: "Dart", icon: "dart" },
+      { name: "Provider / Bloc / GetX" },
+      { name: "React Native", icon: "react" },
+      { name: "Firebase (FCM)", icon: "firebase" },
+      { name: "Android Studio", icon: "androidstudio" },
+      { name: "Xcode", icon: "xcode" },
+      { name: "Play Store & App Store", icon: "googleplay" },
+    ],
+  },
+  {
+    group: "Frontend",
+    items: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "Astro", icon: "astro" },
+      { name: "Vite", icon: "vite" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "Material UI", icon: "mui" },
+      { name: "Bootstrap", icon: "bootstrap" },
+    ],
+  },
+  {
+    group: "Backend & Data",
+    items: [
+      { name: "Go (Golang)", icon: "go" },
+      { name: "Gin", icon: "gin" },
+      { name: "PHP", icon: "php" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "CodeIgniter", icon: "codeigniter" },
+      { name: "Express.js", icon: "express" },
+      { name: "SQL / MySQL", icon: "mysql" },
+    ],
+  },
+  {
+    group: "Tools & Delivery",
+    items: [
+      { name: "Git (GitLab/GitHub)", icon: "git" },
+      { name: "CI/CD", icon: "githubactions" },
+      { name: "Docker", icon: "docker" },
+      { name: "Figma", icon: "figma" },
+      { name: "Apidog" },
+      { name: "DBeaver", icon: "dbeaver" },
+      { name: "Lighthouse / Web Vitals", icon: "lighthouse" },
+    ],
+  },
+];
 
 export const projects = [
   // Physiomobile (Malaysia)
@@ -255,7 +283,8 @@ export const projects = [
     ],
     contribution:
       "Build the first-mile modules of iPOS5 in Next.js, covering shipment pickup and acceptance flows, and integrate them with the courier backend APIs.",
-    status: "Live - Continuous Updates",
+    image: coverIpos5,
+    status: "Live",
     year: "2025",
     color: "#FF6B9D",
     client: "PT Pos Indonesia",
@@ -287,7 +316,7 @@ export const projects = [
     contribution:
       "Developed both Android & iOS versions using Flutter. Implemented the core authentication (Login) and complex Integrasi API (REST) to sync real-time attendance data. Integrated Firebase for notifications and built WebView components for internal HR dashboards.",
     image: coverLivie,
-    status: "Live - Continuous Maintenance",
+    status: "Live",
     year: "2024",
     color: "#FF6B9D",
     client: "PT Pos Indonesia",
@@ -413,7 +442,7 @@ export const projects = [
     contribution:
       "Developed the complex frontend architecture using React and Vite. Focused on robust Integrasi API to handle large-scale HR data, building interactive Material UI components, and managing global state for a seamless evaluation experience.",
     image: coverJobmaster,
-    status: "Live - Continuous Updates",
+    status: "Live",
     year: "2025",
     color: "#D89BB5",
     client: "PT Pos Indonesia",
@@ -503,7 +532,7 @@ export const projects = [
     contribution:
       "Acted as a Fullstack Developer. Designed the MySQL database, developed the backend logic using Native PHP, and implemented deep Integrasi API to connect the vacancy management system with regional office data feeds.",
     image: coverSimtkk,
-    status: "Live - Continuous Maintenance",
+    status: "Live",
     year: "2024",
     color: "#FF6B9D",
     client: "PT Pos Indonesia",
@@ -572,7 +601,7 @@ export const projects = [
     contribution:
       "Delivered the public hiring portal in ~2 weeks using CodeIgniter: landing page, job listings, a multi-step application form with validation, and notifications, integrated with the recruitment backend APIs.",
     image: coverRecruitment,
-    status: "Live - Continuous Updates",
+    status: "Live",
     year: "2024",
     color: "#00D9FF",
     client: "PT Pos Indonesia",
@@ -669,7 +698,8 @@ export const projects = [
     ],
     contribution:
       "Developed the entire frontend system using React. Focused on secure Integrasi API for sensitive retirement data, implemented intricate state management for the form wizard, and integrated client-side PDF generation to automate workflows.",
-    status: "Live - Continuous Maintenance",
+    image: coverSipendi,
+    status: "Live",
     year: "2024",
     color: "#D89BB5",
     client: "PT Pos Indonesia",
@@ -731,7 +761,7 @@ export const projects = [
     screenshotNote:
       "🔒 Enterprise Internal Project: Selected screenshots are limited and blurred to protect organizational knowledge and employee data. Source code is hosted on internal company GitLab and is not public for security and confidentiality reasons.",
     image: coverExplora,
-    status: "Live - Continuous Updates",
+    status: "Live",
     year: "2024",
     color: "#E8B4C8",
     client: "PT Pos Indonesia",
@@ -772,7 +802,8 @@ export const projects = [
     ],
     contribution:
       "Exploring backend development as a beginner. Built basic RESTful endpoints using Golang and Gin, implemented secure Integrasi API with JWT for testing, and learned how to dockerize applications for consistent environments.",
-    status: "Available for Projects",
+    image: coverBackendApi,
+    status: "Ongoing",
     color: "#00D9FF",
     client: "Multiple Clients",
     screenshotNote:
@@ -819,6 +850,7 @@ export const projects = [
       "Point-of-sale and inventory system covering sales transactions, stock tracking and reporting.",
     technologies: ["Next.js", "React", "REST API"],
     features: ["Sales transactions", "Stock tracking", "Reporting"],
+    image: coverSnlGlobal,
     status: "Live",
     color: "#00D9FF",
     client: "SNL Global",
@@ -826,18 +858,18 @@ export const projects = [
   },
   {
     id: 19,
-    title: "Ansel Enamel Tank Calculator",
+    title: "Ansan Enamel Tank Calculator",
     category: "web",
     type: "freelance",
     platform: "Web",
     description:
-      "Calculation tool for Ansel's enamel (glass-fused-to-steel) storage tanks, used to estimate tank specifications and requirements.",
+      "Calculation tool for Ansan Enamel Indonesia's enamel (glass-fused-to-steel) storage tanks, used to estimate tank specifications and requirements.",
     technologies: ["React", "Vite", "JavaScript"],
     features: ["Tank specification estimates", "Requirement calculations"],
     image: coverAnsel,
     status: "Live",
     color: "#059669",
-    client: "Ansel",
+    client: "Ansan Enamel Indonesia",
     links: [{ label: "gfst-calculator.vercel.app", url: "https://gfst-calculator.vercel.app" }],
   },
   {
@@ -864,6 +896,7 @@ export const projects = [
     ],
     contribution:
       "Developed the mobile app using React Native. Focused on complex Integrasi API for the rental instrument catalog and Stripe payments, building a fluid UI for Android and iOS, and using Firebase for real-time data persistence.",
+    image: coverMusicRent,
     status: "Live",
     color: "#8A2BE2",
     client: "Private Client",
@@ -893,6 +926,7 @@ export const projects = [
     ],
     contribution:
       "Built this utility using Flutter. Implemented complex Integrasi API with Google Apps Script for cloud synchronization, handled core NFC scanning logic, and integrated background GPS services for accurate location logging.",
+    image: coverNfcLogger,
     status: "Live",
     color: "#00D9FF",
     client: "Logistics Company",
@@ -923,7 +957,8 @@ export const projects = [
     ],
     contribution:
       "Designing and developing the web frontend from scratch using React. Currently focusing on modular components for upcoming Integrasi API, developing partner matching algorithms, and ensuring a premium user journey.",
-    status: "In Progress / Not Launched",
+    image: coverTemuhobi,
+    status: "In Progress",
     color: "#E8B4C8",
     client: "TemuHobi (Indigo Startup Program)",
   },
@@ -953,6 +988,7 @@ export const projects = [
     ],
     contribution:
       "Conducted extensive user research at hospital pharmacies. Designed the high-fidelity prototypes and mapped out the Integrasi API flow between patients and pharmacists to ensure a smooth, error-free drug pickup experience.",
+    image: coverCokUbat,
     status: "Completed",
     year: "2022",
     color: "#9333EA",
@@ -984,6 +1020,7 @@ export const projects = [
     ],
     contribution:
       "Developed the data cleaning and processing scripts using Python. Implemented Integrasi API concepts for data ingestion from SP2020 repositories, applied string similarity algorithms to resolve errors, and created statistical visualizations.",
+    image: coverBpsSimilarity,
     status: "Completed",
     year: "2022",
     color: "#059669",
@@ -995,6 +1032,7 @@ export const experience = [
   {
     id: 1,
     company: "Physiomobile (Malaysia)",
+    logo: logoPhysio,
     position: "Mobile Developer (Remote)",
     duration: "Jan 2026 - Present",
     location: "Remote",
@@ -1010,6 +1048,7 @@ export const experience = [
   {
     id: 2,
     company: "PT Pos Indonesia (Persero)",
+    logo: logoPosInd,
     position: "Software Developer (Front-end/Mobile)",
     duration: "Aug 2023 - Present",
     location: "Bandung, Indonesia",

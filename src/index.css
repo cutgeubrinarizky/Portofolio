@@ -221,3 +221,77 @@ code {
 .screenshot-enhance-web {
     filter: contrast(1.15) brightness(1.08) saturate(1.15) sharpen(1);
 }
+
+/* ---------- Site theme (dark default, light via html.light) ---------- */
+:root,
+.force-dark {
+  --c-base: 15 15 16;
+  --c-surface: 26 26 29;
+  --c-surface2: 45 45 48;
+  --c-line: 61 61 66;
+  --c-ink: 255 255 255;
+  color-scheme: dark;
+}
+html.light {
+  --c-base: 250 247 249;
+  --c-surface: 255 255 255;
+  --c-surface2: 243 236 240;
+  --c-line: 226 216 222;
+  --c-ink: 28 24 27;
+  color-scheme: light;
+}
+html.light .force-dark {
+  --c-base: 15 15 16;
+  --c-surface: 26 26 29;
+  --c-surface2: 45 45 48;
+  --c-line: 61 61 66;
+  --c-ink: 255 255 255;
+}
+/* Pastel pink is too faint on white: deepen the accent in light mode */
+html.light .text-\[\#E8B4C8\]:not(.force-dark *) {
+  color: #c2457a;
+}
+html.light .from-\[\#E8B4C8\]:not(.force-dark *) {
+  --tw-gradient-from: #e86aa0 var(--tw-gradient-from-position);
+}
+body {
+  background-color: rgb(var(--c-base));
+  transition: background-color 0.3s ease;
+}
+/* Category badges use -300/-400 text tuned for dark; deepen them on light */
+html.light .text-cyan-300:not(.force-dark *),
+html.light .text-cyan-400:not(.force-dark *) { color: #0e7490; }
+html.light .text-blue-400:not(.force-dark *) { color: #1d4ed8; }
+html.light .text-purple-400:not(.force-dark *) { color: #7e22ce; }
+html.light .text-pink-400:not(.force-dark *) { color: #be185d; }
+html.light .text-green-400:not(.force-dark *) { color: #15803d; }
+/* Scroll reveal */
+html.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+html.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+/* Hero device float (uses the standalone `translate` property so it composes with rotate/translate utilities) */
+@keyframes float-y { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+.animate-float { animation: float-y 6s ease-in-out infinite; }
+.animate-float-slow { animation: float-y 8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-float-slow { animation: none; }
+}
+/* Project showreel marquee */
+@keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee-x 90s linear infinite; padding-inline: 10px; }
+.marquee-reverse { animation-direction: reverse; animation-duration: 80s; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track { animation-play-state: paused; }
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .marquee { overflow-x: auto; }
+}

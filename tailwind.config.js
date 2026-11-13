@@ -13,6 +13,11 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+  			base: 'rgb(var(--c-base) / <alpha-value>)',
+  			surface: 'rgb(var(--c-surface) / <alpha-value>)',
+  			surface2: 'rgb(var(--c-surface2) / <alpha-value>)',
+  			line: 'rgb(var(--c-line) / <alpha-value>)',
+  			ink: 'rgb(var(--c-ink) / <alpha-value>)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

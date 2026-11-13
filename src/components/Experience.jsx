@@ -4,13 +4,13 @@ import { Briefcase, MapPin, Calendar } from 'lucide-react';
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 bg-gradient-to-b from-[#0F0F10] via-[#1A1A1D] to-[#2D2D30] relative">
+    <section id="experience" className="py-20 bg-gradient-to-b from-base via-surface to-base relative">
       {/* Background elements */}
-      <div className="absolute inset-0 opacity-3">
+      <div className="absolute inset-0 pointer-events-none opacity-3">
         <div className="absolute top-20 right-1/3 w-28 h-28 border border-[#FF6B9D]/20 rounded-full animate-pulse" style={{animationDuration: '4s'}} />
         <div className="absolute bottom-20 left-1/3 w-20 h-20 border border-[#E8B4C8]/15 rotate-12" />
       </div>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6" data-reveal>
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -22,26 +22,30 @@ const Experience = () => {
         </div>
 
         <div className="flex justify-center">
-          <div className="max-w-3xl w-full space-y-8">
+          <div className="max-w-6xl w-full grid lg:grid-cols-2 gap-8">
             {experience.map((job) => (
-            <div key={job.id} className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#00FFFF] to-[#FF0080] rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300" />
-              <div className="relative bg-black/40 rounded-2xl p-8 border border-[#00FFFF]/20 hover:border-[#00FFFF] transition-all duration-300 backdrop-blur-xl">
+            <div key={job.id} className="relative group h-full">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#E8B4C8] to-[#FF6B9D] rounded-2xl blur opacity-15 group-hover:opacity-30 transition duration-300" />
+              <div className="relative h-full bg-surface/80 rounded-2xl p-8 border border-[#E8B4C8]/20 hover:border-[#E8B4C8]/60 transition-all duration-300 backdrop-blur-xl">
                 {/* Company & Position */}
                 <div className="flex items-start gap-6 mb-6">
-                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#00FFFF] to-[#FF0080] flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="w-8 h-8 text-white" />
+                  <div className="w-28 h-16 rounded-xl bg-white flex items-center justify-center flex-shrink-0 p-3">
+                    {job.logo ? (
+                      <img loading="lazy" decoding="async" src={job.logo} alt={job.company} className="max-w-full max-h-full object-contain" />
+                    ) : (
+                      <Briefcase className="w-8 h-8 text-[#FF6B9D]" />
+                    )}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{job.position}</h3>
-                    <p className="text-[#00FFFF] font-bold text-lg mb-3">{job.company}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-white/70">
+                    <h3 className="text-2xl font-bold text-ink mb-2">{job.position}</h3>
+                    <p className="text-[#E8B4C8] font-bold text-lg mb-3">{job.company}</p>
+                    <div className="flex flex-wrap gap-4 text-sm text-ink/70">
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-[#00FFFF]" />
+                        <Calendar className="w-4 h-4 text-[#E8B4C8]" />
                         {job.duration}
                       </div>
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-[#FF0080]" />
+                        <MapPin className="w-4 h-4 text-[#FF6B9D]" />
                         {job.location}
                       </div>
                     </div>
@@ -49,14 +53,14 @@ const Experience = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-white/80 mb-6 text-lg leading-relaxed">{job.description}</p>
+                <p className="text-ink/80 mb-6 leading-relaxed">{job.description}</p>
 
                 {/* Highlights */}
-                <div className="grid md:grid-cols-2 gap-3">
+                <div className="grid gap-3">
                   {job.highlights.map((highlight, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-black/20 border border-[#00FFFF]/10">
-                      <div className="w-2 h-2 rounded-full bg-[#00FFFF] mt-2 flex-shrink-0" />
-                      <span className="text-white/70 text-sm">{highlight}</span>
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-surface2/40 border border-ink/5">
+                      <div className="w-2 h-2 rounded-full bg-[#FF6B9D] mt-2 flex-shrink-0" />
+                      <span className="text-ink/70 text-sm">{highlight}</span>
                     </div>
                   ))}
                 </div>
